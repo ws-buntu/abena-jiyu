@@ -1,0 +1,3194 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abena-Jiyu — Ecosystem for Apps, Digital Products, Courses, Dropshipping & Media</title>
+    
+    <!-- Meta SEO & OpenGraph -->
+    <meta name="description" content="Curated marketplace & media studio featuring Mac/iOS apps, Notion systems, masterclasses, partner gear, dropship products, and creator podcasts.">
+    <meta property="og:title" content="Abena-Jiyu — Apps, Digital Products, Courses & Dropshipping Platform">
+    <meta property="og:description" content="Discover verified software tools, creator courses, hardware gear, dropship lifestyle products, and podcasts.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Abena-Jiyu">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              botanical: {
+                950: '#0F281E',
+                900: '#1B4332',
+                800: '#2D6A4F',
+                700: '#40916C',
+                600: '#52B788',
+                200: '#B7E4C7',
+                100: '#D8F3DC',
+                50: '#F2FAF4',
+              },
+              citrus: {
+                700: '#D9532F',
+                600: '#E76F51',
+                500: '#F4A261',
+                200: '#FCD5CE',
+                100: '#FFEBD9',
+                50: '#FFF8F3',
+              },
+              cream: {
+                DEFAULT: '#FAF9F6',
+                card: '#FFFFFF',
+                darker: '#F3F1EC',
+              }
+            },
+            fontFamily: {
+              sans: ['Plus Jakarta Sans', 'sans-serif'],
+            },
+            boxShadow: {
+              'soft': '0 10px 30px -5px rgba(27, 67, 50, 0.05), 0 4px 12px -2px rgba(27, 67, 50, 0.03)',
+              'glow': '0 12px 35px -8px rgba(231, 111, 81, 0.25)',
+              'player': '0 -8px 30px rgba(15, 40, 30, 0.14)',
+            }
+          }
+        }
+      }
+    </script>
+    
+    <style>
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #FAF9F6;
+        color: #1F2937;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #FAF9F6;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #C2D6CA;
+        border-radius: 9999px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #2D6A4F;
+      }
+
+      /* Glassmorphism styling */
+      .glass-nav {
+        background: rgba(250, 249, 246, 0.90);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+      }
+
+      /* Audio range slider customization */
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #1B4332;
+        cursor: pointer;
+        transition: transform 0.1s ease;
+      }
+      input[type="range"]::-webkit-slider-thumb:hover {
+        transform: scale(1.25);
+        background: #E76F51;
+      }
+
+      @keyframes pulseGlow {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.7; transform: scale(1.05); }
+      }
+      .live-pulse {
+        animation: pulseGlow 2s infinite ease-in-out;
+      }
+
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-botanical-100 selection:text-botanical-900 pb-28">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- HEADER / NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 glass-nav border-b border-botanical-900/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20 gap-3">
+                
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3 group focus:outline-none" onclick="app.setCategory('all'); app.scrollToSection('catalog-section');">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-botanical-900 to-botanical-700 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform duration-300">
+                        <svg class="w-6 h-6 fill-current text-citrus-500" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10 5.52 0 10-4.48 10-10C22 6.48 17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-extrabold tracking-tight text-botanical-950 font-sans">Abena<span class="text-citrus-600">-Jiyu</span></span>
+                        <span class="block text-[10px] font-bold tracking-widest text-botanical-800 uppercase -mt-1">Commerce, Media & Dropship Hub</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Search Bar -->
+                <div class="hidden md:flex flex-1 max-w-md relative mx-4">
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        placeholder="Search apps, courses, dropship gear, podcasts..." 
+                        class="w-full bg-white border border-botanical-900/15 rounded-full py-2.5 pl-11 pr-10 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-botanical-700 focus:ring-2 focus:ring-botanical-600/20 shadow-sm transition-all"
+                        oninput="app.handleSearch(this.value)"
+                    />
+                    <div class="absolute left-3.5 top-3 text-botanical-700">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    </div>
+                    <button id="clear-search-btn" class="hidden absolute right-3.5 top-3 text-gray-400 hover:text-gray-600" onclick="app.clearSearch()">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <!-- Navigation Quick Links & Actions -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <button onclick="app.scrollToSection('catalog-section')" class="hidden lg:inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-botanical-900 hover:text-citrus-600 px-2.5 py-2 transition-colors">
+                        Catalog
+                    </button>
+                    <button onclick="app.setCategory('dropship'); app.scrollToSection('catalog-section');" class="hidden lg:inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-amber-700 bg-amber-50 hover:bg-amber-100 px-3 py-1.5 rounded-full border border-amber-200 transition-colors">
+                        📦 Dropship Store
+                    </button>
+                    <button onclick="app.scrollToSection('media-section')" class="hidden lg:inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-botanical-900 hover:text-citrus-600 px-2.5 py-2 transition-colors">
+                        <span class="inline-block w-2 h-2 rounded-full bg-citrus-600 live-pulse"></span>
+                        Media Hub
+                    </button>
+
+                    <!-- Customer Library & Orders Button -->
+                    <button 
+                        onclick="app.toggleLibrary(true)" 
+                        class="bg-cream-darker hover:bg-botanical-100 text-botanical-950 font-bold px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-full text-xs flex items-center gap-1.5 transition-all border border-botanical-900/10 shadow-sm"
+                        title="View purchased products & track dropship shipments"
+                    >
+                        <span>📂</span>
+                        <span class="hidden sm:inline">My Library & Orders</span>
+                        <span id="library-badge" class="bg-botanical-900 text-white text-[10px] font-extrabold rounded-full px-1.5 py-0.2">0</span>
+                    </button>
+
+                    <!-- PIN Admin Portal Trigger -->
+                    <button 
+                        onclick="app.openAdminStudio()" 
+                        id="admin-nav-btn"
+                        class="bg-gradient-to-r from-botanical-900 to-botanical-950 text-white hover:from-botanical-800 hover:to-botanical-900 rounded-full px-3 py-2 sm:px-4 sm:py-2.5 text-xs font-bold flex items-center gap-1.5 transition-all shadow-md active:scale-95 border border-botanical-600/30"
+                    >
+                        <span id="admin-icon">🔒</span>
+                        <span class="hidden sm:inline" id="admin-btn-label">Admin Studio</span>
+                    </button>
+
+                    <!-- Shopping Cart Trigger Button -->
+                    <button 
+                        onclick="app.toggleCart(true)"
+                        class="relative bg-citrus-600 hover:bg-citrus-500 text-white rounded-full p-2.5 sm:px-4 sm:py-2.5 font-bold text-xs sm:text-sm flex items-center gap-2 transition-all shadow-glow active:scale-95"
+                    >
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                        <span class="hidden sm:inline">Bag</span>
+                        <span id="cart-badge" class="bg-botanical-950 text-white text-xs font-extrabold rounded-full w-5 h-5 flex items-center justify-center -mr-1">0</span>
+                    </button>
+
+                    <!-- Mobile Menu Toggle Button -->
+                    <button onclick="app.toggleMobileMenu()" class="lg:hidden p-2 text-botanical-950 rounded-xl hover:bg-botanical-100 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Search Bar -->
+            <div class="md:hidden pb-3">
+                <div class="relative">
+                    <input 
+                        type="text" 
+                        placeholder="Search apps, dropship products, media..." 
+                        class="w-full bg-white border border-botanical-900/15 rounded-full py-2 pl-10 pr-4 text-xs font-medium focus:outline-none focus:border-botanical-700 shadow-sm"
+                        oninput="app.handleSearch(this.value)"
+                    />
+                    <svg class="w-4 h-4 absolute left-3.5 top-2.5 text-botanical-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-gray-200 px-4 pt-3 pb-6 space-y-3">
+            <div class="flex flex-col gap-2">
+                <button onclick="app.scrollToSection('catalog-section'); app.toggleMobileMenu();" class="text-left font-bold text-sm text-botanical-950 py-2 border-b border-gray-100">
+                    🛍️ Catalog & Software
+                </button>
+                <button onclick="app.setCategory('dropship'); app.scrollToSection('catalog-section'); app.toggleMobileMenu();" class="text-left font-bold text-sm text-amber-700 py-2 border-b border-gray-100">
+                    📦 Dropship Physical Goods
+                </button>
+                <button onclick="app.scrollToSection('media-section'); app.toggleMobileMenu();" class="text-left font-bold text-sm text-botanical-950 py-2 border-b border-gray-100">
+                    🎙️ Media & Video Hub
+                </button>
+                <button onclick="app.toggleLibrary(true); app.toggleMobileMenu();" class="text-left font-bold text-sm text-botanical-950 py-2 border-b border-gray-100">
+                    📂 My Library & Tracking
+                </button>
+                <button onclick="app.openAdminStudio(); app.toggleMobileMenu();" class="text-left font-bold text-sm text-citrus-600 py-2">
+                    🔒 Admin Command Center
+                </button>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- HERO SECTION (Bento Grid Layout) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            
+            <!-- Main Hero Card (8 Cols) -->
+            <div class="lg:col-span-8 bg-gradient-to-br from-botanical-900 via-botanical-900 to-botanical-950 rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden flex flex-col justify-between shadow-soft">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-botanical-600/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -left-10 -top-10 w-60 h-60 bg-citrus-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-botanical-800/80 backdrop-blur-md border border-botanical-600/30 rounded-full px-4 py-1.5 text-xs font-semibold text-botanical-100 mb-6">
+                        <span class="w-2 h-2 rounded-full bg-citrus-500 live-pulse"></span>
+                        Apps, Masterclasses & Dropshipping 2026
+                    </div>
+                    
+                    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight text-white mb-4">
+                        Curated Digital Tools, Courses & <span class="text-transparent bg-clip-text bg-gradient-to-r from-citrus-500 to-amber-300">Worldwide Dropshipping</span>
+                    </h1>
+                    <p class="text-botanical-100/80 text-base sm:text-lg max-w-2xl leading-relaxed mb-8">
+                        Explore verified Mac/iOS apps, Notion operating systems, video masterclasses, lifestyle dropshipping goods, and listen to creator podcasts in one seamless platform.
+                    </p>
+                </div>
+
+                <div>
+                    <div class="flex flex-wrap gap-4 items-center mb-8">
+                        <button onclick="app.scrollToSection('catalog-section')" class="bg-citrus-600 hover:bg-citrus-500 text-white font-bold px-7 py-3.5 rounded-full shadow-glow transition-all hover:-translate-y-0.5 active:translate-y-0 text-sm flex items-center gap-2">
+                            <span>Explore Catalog</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </button>
+                        <button onclick="app.setCategory('dropship'); app.scrollToSection('catalog-section')" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 border border-amber-500/40 font-semibold px-6 py-3.5 rounded-full backdrop-blur-md transition-all text-sm flex items-center gap-2">
+                            <span>📦 Dropship Goods</span>
+                        </button>
+                        <button onclick="app.playPodcast(101)" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold px-5 py-3.5 rounded-full backdrop-blur-md transition-all text-sm flex items-center gap-2">
+                            <svg class="w-4 h-4 text-citrus-500 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            <span>Ep 42 Podcast</span>
+                        </button>
+                    </div>
+
+                    <!-- Trust Badges -->
+                    <div class="pt-6 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <div class="flex items-center gap-2 text-xs text-botanical-100/90 font-medium">
+                            <span class="p-1 rounded-full bg-botanical-800 text-citrus-500">⚡</span>
+                            <span>Instant Digital Delivery</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-botanical-100/90 font-medium">
+                            <span class="p-1 rounded-full bg-botanical-800 text-amber-400">✈️</span>
+                            <span>Global Express Dropshipping</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-botanical-100/90 font-medium">
+                            <span class="p-1 rounded-full bg-botanical-800 text-citrus-500">🎓</span>
+                            <span>Verified Masterclasses</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-botanical-100/90 font-medium">
+                            <span class="p-1 rounded-full bg-botanical-800 text-citrus-500">🎧</span>
+                            <span>Integrated Audio Studio</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Side Bento Cards (4 Cols) -->
+            <div class="lg:col-span-4 flex flex-col gap-6 justify-between">
+                
+                <!-- Dropship Highlight Bento Card -->
+                <div class="bg-gradient-to-br from-amber-500/10 to-citrus-50 border border-amber-500/30 rounded-3xl p-6 flex-1 flex flex-col justify-between group hover:shadow-md transition-all relative">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="bg-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Featured Dropship</span>
+                        <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full">In Stock</span>
+                    </div>
+
+                    <div>
+                        <span class="text-[10px] font-bold text-amber-800 uppercase tracking-widest block">Ships Worldwide • 4-7 Days</span>
+                        <h3 class="text-lg font-extrabold text-gray-900 group-hover:text-amber-700 transition-colors leading-snug mt-1 mb-1">
+                            Botanical Desk Mat & Pad
+                        </h3>
+                        <p class="text-xs text-gray-600 line-clamp-2 mb-4">
+                            Eco-friendly felt & rubber desk protector mat with anti-slip base for modern workspaces.
+                        </p>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2 border-t border-amber-200/50">
+                        <span class="text-lg font-extrabold text-botanical-950">$28.00</span>
+                        <button onclick="app.addToCart(9)" class="bg-amber-600 hover:bg-amber-500 text-white font-bold px-4 py-2 rounded-xl text-xs transition-all shadow-sm">
+                            Add to Bag +
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Featured Masterclass Teaser Bento Card -->
+                <div class="bg-white border border-botanical-900/10 rounded-3xl p-6 flex-1 flex items-center justify-between shadow-soft hover:border-botanical-700/30 transition-all">
+                    <div>
+                        <span class="text-xs font-bold text-botanical-700 uppercase tracking-wider">Masterclass Preview</span>
+                        <h4 class="text-base font-extrabold text-gray-900 mt-1">Full-Stack Cloud & AI Mastery</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">Watch 2-min lesson trailer</p>
+                        <div class="mt-3 flex items-center gap-2">
+                            <span class="text-base font-bold text-botanical-900">$89.99</span>
+                            <span class="text-xs text-gray-400">42 HD Lessons</span>
+                        </div>
+                    </div>
+                    <button onclick="app.openVideoModal(3)" class="w-12 h-12 rounded-2xl bg-botanical-50 text-citrus-600 hover:bg-botanical-900 hover:text-white flex items-center justify-center font-bold text-xl transition-all shadow-sm">
+                        🎬
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- MAIN CATALOG SECTION -->
+    <section id="catalog-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <!-- Section Header & Dynamic Filter Tabs -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 border-b border-gray-200/80 pb-6">
+            <div>
+                <div class="flex items-center gap-3">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-botanical-950 tracking-tight">Ecosystem Catalog</h2>
+                    <span id="admin-status-pill" class="hidden bg-botanical-900 text-citrus-500 font-bold px-3 py-1 rounded-full text-xs flex items-center gap-1 shadow-sm">
+                        ⚡ Admin Command Active
+                    </span>
+                </div>
+                <p class="text-sm text-gray-600 mt-1">Discover software, digital templates, courses, affiliate gear & dropship physical goods.</p>
+            </div>
+
+            <!-- Dynamic Category Filter Pills -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 no-scrollbar" id="category-pills">
+                <!-- Javascript populates category buttons -->
+            </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Dynamic JavaScript Product Cards -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="hidden py-16 text-center">
+            <div class="w-16 h-16 bg-botanical-100 text-botanical-900 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">🔍</div>
+            <h3 class="text-lg font-bold text-gray-900">No matching items found</h3>
+            <p class="text-sm text-gray-500 mt-1">Try tweaking your search term or selecting another category filter.</p>
+            <button onclick="app.clearSearch()" class="mt-4 bg-botanical-900 text-white font-semibold px-5 py-2 rounded-full text-xs hover:bg-botanical-800 transition-colors">Reset Search Filters</button>
+        </div>
+    </section>
+
+
+    <!-- MEDIA & PODCAST HUB SECTION -->
+    <section id="media-section" class="bg-gradient-to-b from-botanical-50/70 to-cream py-14 border-t border-b border-botanical-900/5 my-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-8">
+                <div>
+                    <div class="inline-flex items-center gap-1.5 text-xs font-bold text-citrus-600 bg-citrus-100/80 px-3 py-1 rounded-full mb-2">
+                        <span>🎙️ & 🎬</span> Abena-Jiyu Broadcast & Video Studio
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-botanical-950 tracking-tight">Audio Podcasts & Video Previews</h2>
+                </div>
+                <p class="text-xs sm:text-sm text-gray-600 max-w-md mt-2 md:mt-0">
+                    Listen to creator podcasts or stream course trailers directly inside our integrated player hub.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="podcast-cards-container">
+                <!-- Javascript dynamic podcast items -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- NEWSLETTER BANNER -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-gradient-to-r from-botanical-900 via-botanical-800 to-botanical-900 rounded-3xl p-8 sm:p-12 text-white shadow-soft relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="max-w-xl">
+                <span class="inline-block bg-white/10 text-citrus-500 text-xs font-bold px-3 py-1 rounded-full mb-3 border border-white/10">Weekly Dispatch</span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Join 15,000+ Creators & Innovators</h3>
+                <p class="text-botanical-100/80 text-sm mt-2 leading-relaxed">
+                    Get weekly digital app drops, dropship product alerts, course discounts, and podcast show notes directly in your inbox.
+                </p>
+            </div>
+            
+            <div class="w-full md:w-auto">
+                <form onsubmit="app.handleSubscribe(event)" class="flex flex-col sm:flex-row gap-2 max-w-md w-full">
+                    <input 
+                        type="email" 
+                        required 
+                        placeholder="Enter your email address" 
+                        class="bg-white/10 text-white placeholder-botanical-100/50 border border-white/20 rounded-full px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-citrus-500 flex-1 min-w-[240px]"
+                    />
+                    <button type="submit" class="bg-citrus-600 hover:bg-citrus-500 text-white font-bold px-7 py-3 rounded-full text-sm transition-all shadow-glow whitespace-nowrap">
+                        Subscribe Free
+                    </button>
+                </form>
+                <p class="text-[11px] text-botanical-100/60 mt-2 text-center sm:text-left">Use promo code <b>ABENA10</b> for 10% off at checkout!</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="bg-botanical-950 text-white pt-16 pb-24 border-t border-botanical-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-10 pb-12 border-b border-botanical-900/50">
+                
+                <!-- Brand Info -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-9 h-9 rounded-xl bg-citrus-600 flex items-center justify-center text-white font-bold">
+                            AJ
+                        </div>
+                        <span class="text-2xl font-extrabold tracking-tight">Abena<span class="text-citrus-500">-Jiyu</span></span>
+                    </div>
+                    <p class="text-xs text-botanical-100/70 max-w-sm leading-relaxed mb-6">
+                        Abena-Jiyu is a modern digital ecosystem, dropshipping storefront, and media studio empowering independent creators, developers, and global shoppers with clean software tools, physical lifestyle goods, courses, and podcasts.
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <a href="#" class="w-8 h-8 rounded-full bg-botanical-900 hover:bg-citrus-600 text-white flex items-center justify-center text-xs transition-colors">X</a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-botanical-900 hover:bg-citrus-600 text-white flex items-center justify-center text-xs transition-colors">YT</a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-botanical-900 hover:bg-citrus-600 text-white flex items-center justify-center text-xs transition-colors">GH</a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-botanical-900 hover:bg-citrus-600 text-white flex items-center justify-center text-xs transition-colors">IG</a>
+                    </div>
+                </div>
+
+                <!-- Column 1 -->
+                <div>
+                    <h4 class="text-xs font-bold text-citrus-500 uppercase tracking-wider mb-4">Storefront Categories</h4>
+                    <ul class="space-y-2.5 text-xs text-botanical-100/80">
+                        <li><a href="#" onclick="app.setCategory('apps'); app.scrollToSection('catalog-section')" class="hover:text-white transition-colors">Mac & Web Apps</a></li>
+                        <li><a href="#" onclick="app.setCategory('digital'); app.scrollToSection('catalog-section')" class="hover:text-white transition-colors">Notion Workspaces</a></li>
+                        <li><a href="#" onclick="app.setCategory('courses'); app.scrollToSection('catalog-section')" class="hover:text-white transition-colors">Creator Masterclasses</a></li>
+                        <li><a href="#" onclick="app.setCategory('dropship'); app.scrollToSection('catalog-section')" class="hover:text-white transition-colors">📦 Dropship Physical Store</a></li>
+                        <li><a href="#" onclick="app.setCategory('affiliate'); app.scrollToSection('catalog-section')" class="hover:text-white transition-colors">Partner Hardware Gear</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 2 -->
+                <div>
+                    <h4 class="text-xs font-bold text-citrus-500 uppercase tracking-wider mb-4">Media & Admin</h4>
+                    <ul class="space-y-2.5 text-xs text-botanical-100/80">
+                        <li><a href="#" onclick="app.scrollToSection('media-section')" class="hover:text-white transition-colors">The Abena-Jiyu Show</a></li>
+                        <li><a href="#" onclick="app.playPodcast(101)" class="hover:text-white transition-colors">Listen to Ep 42</a></li>
+                        <li><a href="#" onclick="app.openVideoModal(3)" class="hover:text-white transition-colors">Video Trailers</a></li>
+                        <li><a href="#" onclick="app.openAdminStudio()" class="hover:text-white transition-colors">🔒 Admin Command Center</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div>
+                    <h4 class="text-xs font-bold text-citrus-500 uppercase tracking-wider mb-4">Customer Trust</h4>
+                    <ul class="space-y-2.5 text-xs text-botanical-100/80">
+                        <li><a href="#" onclick="app.toggleLibrary(true)" class="hover:text-white transition-colors">My Library & Order Tracking</a></li>
+                        <li><a href="#" onclick="app.openPolicyModal('terms')" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" onclick="app.openPolicyModal('privacy')" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" onclick="app.openPolicyModal('dropship')" class="hover:text-white transition-colors">Shipping & Dropshipping Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-botanical-100/50 gap-4">
+                <p>&copy; 2026 Abena-Jiyu Digital Platform & Dropship Ecosystem. All rights reserved.</p>
+                <p class="flex items-center gap-1">
+                    <span>Crafted with</span>
+                    <span class="text-citrus-500">🌿</span>
+                    <span>for creators & global shoppers</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- STICKY PERSISTENT AUDIO PLAYER BAR WITH CANVAS WAVEFORM VISUALIZER -->
+    <div id="audio-player-bar" class="fixed bottom-0 left-0 right-0 z-50 bg-botanical-950 text-white border-t border-botanical-800 shadow-player transform transition-transform duration-300 translate-y-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6">
+                
+                <!-- Track Details & Audio Visualizer Canvas -->
+                <div class="flex items-center gap-3.5 w-full sm:w-1/4">
+                    <div id="player-thumb" class="w-11 h-11 rounded-xl bg-gradient-to-tr from-citrus-600 to-amber-400 flex-shrink-0 flex items-center justify-center font-bold text-white shadow-md text-sm">
+                        🎙️
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <div class="flex items-center gap-2">
+                            <canvas id="waveform-canvas" width="48" height="12" class="rounded bg-botanical-900/60"></canvas>
+                            <span id="player-tag" class="text-[10px] font-bold uppercase tracking-wider text-citrus-500 truncate">Now Playing</span>
+                        </div>
+                        <h4 id="player-title" class="text-xs sm:text-sm font-bold text-white truncate">Select an episode to listen</h4>
+                        <p id="player-author" class="text-[11px] text-botanical-100/70 truncate">Abena-Jiyu Studio</p>
+                    </div>
+                </div>
+
+                <!-- Media Controls & Scrubber -->
+                <div class="flex flex-col items-center gap-1.5 w-full sm:w-2/4">
+                    <div class="flex items-center gap-4">
+                        <button onclick="app.seekAudio(-15)" class="text-botanical-100/70 hover:text-white transition-colors" title="Rewind 15s">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.334 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z"/></svg>
+                        </button>
+                        
+                        <button onclick="app.togglePlayPause()" id="player-play-btn" class="w-10 h-10 rounded-full bg-citrus-600 hover:bg-citrus-500 text-white flex items-center justify-center shadow-glow transition-transform active:scale-95">
+                            <svg id="play-icon" class="w-5 h-5 fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            <svg id="pause-icon" class="w-5 h-5 fill-current hidden" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                        </button>
+
+                        <button onclick="app.seekAudio(15)" class="text-botanical-100/70 hover:text-white transition-colors" title="Forward 15s">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.934 12.8a1 1 0 000-1.6L6.6 7.2A1 1 0 005 8v8a1 1 0 001.6.8l5.334-4zM19.934 12.8a1 1 0 000-1.6l-5.334-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.334-4z"/></svg>
+                        </button>
+
+                        <!-- Speed Toggle -->
+                        <button onclick="app.cyclePlaybackSpeed()" id="speed-btn" class="text-[11px] font-extrabold bg-botanical-900 hover:bg-botanical-800 text-citrus-500 border border-botanical-700 px-2 py-0.5 rounded transition-colors">
+                            1.0x
+                        </button>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="w-full flex items-center gap-2 text-[11px] font-mono text-botanical-100/60">
+                        <span id="player-current-time">00:00</span>
+                        <input 
+                            type="range" 
+                            id="player-progress" 
+                            value="0" 
+                            min="0" 
+                            max="100" 
+                            class="w-full h-1.5 bg-botanical-900 rounded-lg appearance-none cursor-pointer accent-citrus-600"
+                            oninput="app.handleScrub(this.value)"
+                        />
+                        <span id="player-duration">34:00</span>
+                    </div>
+                </div>
+
+                <!-- Volume & Close Controls -->
+                <div class="hidden sm:flex items-center justify-end gap-3 w-1/4">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-botanical-100/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
+                        <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.8" class="w-16 h-1 bg-botanical-900 rounded appearance-none cursor-pointer accent-citrus-600" oninput="app.setVolume(this.value)" />
+                    </div>
+                    <button onclick="app.closeAudioPlayer()" class="text-botanical-100/50 hover:text-white p-1 rounded-lg transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- VIDEO MASTERCLASS PREVIEW MODAL -->
+    <div id="video-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
+        <div class="bg-botanical-950 text-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-botanical-700/40 relative">
+            <button onclick="app.closeVideoModal()" class="absolute top-4 right-4 z-10 bg-black/60 text-white hover:bg-black p-2 rounded-full">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div id="video-modal-content">
+                <!-- Dynamic Video Content injected by JS -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SHOPPING CART DRAWER -->
+    <div id="cart-drawer-backdrop" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" onclick="app.toggleCart(false)"></div>
+    <div id="cart-drawer" class="fixed top-0 right-0 z-50 h-full w-full max-w-md bg-cream text-gray-900 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col justify-between">
+        
+        <!-- Cart Header -->
+        <div class="p-6 bg-white border-b border-gray-200/80 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-xl bg-botanical-900 text-white flex items-center justify-center font-bold text-sm">
+                    🛍️
+                </div>
+                <div>
+                    <h3 class="text-lg font-extrabold text-botanical-950">Your Digital & Physical Bag</h3>
+                    <p id="cart-dropship-notice" class="hidden text-[10px] text-amber-700 font-bold">Includes Dropship Physical Items (Worldwide Shipping)</p>
+                </div>
+            </div>
+            <button onclick="app.toggleCart(false)" class="text-gray-400 hover:text-gray-700 p-1 rounded-full transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+
+        <!-- Cart Items List -->
+        <div class="flex-1 overflow-y-auto p-6 space-y-4" id="cart-items-container">
+            <!-- Dynamic JavaScript Content -->
+        </div>
+
+        <!-- Cart Footer & Promo Code -->
+        <div class="p-6 bg-white border-t border-gray-200/80 space-y-4">
+            
+            <!-- Promo Code Input -->
+            <div class="flex gap-2">
+                <input 
+                    type="text" 
+                    id="promo-input" 
+                    placeholder="Promo code (e.g., ABENA10)" 
+                    class="bg-cream border border-gray-300 rounded-xl px-3.5 py-2 text-xs font-semibold uppercase flex-1 focus:outline-none focus:border-botanical-700"
+                />
+                <button onclick="app.applyPromoCode()" class="bg-botanical-900 hover:bg-botanical-800 text-white font-bold text-xs px-4 py-2 rounded-xl transition-all">
+                    Apply
+                </button>
+            </div>
+
+            <!-- Price Breakdown -->
+            <div class="space-y-1.5 text-xs text-gray-600 border-t border-gray-100 pt-3">
+                <div class="flex justify-between">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal" class="font-bold text-gray-900">$0.00</span>
+                </div>
+                <div id="promo-row" class="hidden flex justify-between text-citrus-600 font-semibold">
+                    <span id="promo-row-label">Promo Discount</span>
+                    <span id="cart-discount">-$0.00</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Estimated Shipping</span>
+                    <span id="cart-shipping-fee" class="text-botanical-700 font-bold">FREE</span>
+                </div>
+                <div class="flex justify-between text-sm font-extrabold text-botanical-950 pt-2 border-t border-gray-200">
+                    <span>Total Amount</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+            </div>
+
+            <button 
+                onclick="app.openCheckout()"
+                id="checkout-btn"
+                class="w-full bg-citrus-600 hover:bg-citrus-500 text-white font-extrabold py-3.5 rounded-2xl shadow-glow transition-all flex items-center justify-center gap-2 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+                <span>Proceed to Checkout</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- MY LIBRARY & ORDER TRACKING DRAWER -->
+    <div id="library-drawer-backdrop" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" onclick="app.toggleLibrary(false)"></div>
+    <div id="library-drawer" class="fixed top-0 right-0 z-50 h-full w-full max-w-md bg-cream text-gray-900 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col justify-between">
+        <div class="p-6 bg-botanical-950 text-white flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-citrus-600 text-white flex items-center justify-center font-bold text-base shadow-md">
+                    📂
+                </div>
+                <div>
+                    <h3 class="text-base font-extrabold">My Library & Order Tracking</h3>
+                    <p class="text-[11px] text-botanical-100/70">Digital licenses & dropship order tracking</p>
+                </div>
+            </div>
+            <button onclick="app.toggleLibrary(false)" class="text-white/60 hover:text-white p-1 rounded-full">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-6 space-y-4" id="library-items-container">
+            <!-- Dynamic JavaScript Content -->
+        </div>
+
+        <div class="p-6 bg-white border-t border-gray-200 text-center">
+            <p class="text-xs text-gray-500 mb-3">All digital products include lifetime updates. Dropship shipments track automatically.</p>
+            <button onclick="app.toggleLibrary(false)" class="w-full bg-botanical-900 text-white font-bold py-3 rounded-2xl text-xs hover:bg-botanical-800 transition-colors">
+                Close Drawer
+            </button>
+        </div>
+    </div>
+
+
+    <!-- QUICK VIEW PRODUCT MODAL -->
+    <div id="quickview-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative transform scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto" id="quickview-card">
+            <button onclick="app.closeQuickView()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700 p-1 rounded-full transition-colors z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div id="quickview-content">
+                <!-- Javascript dynamic quickview content -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- CHECKOUT MODAL (Supports Digital & Dropshipping Shipping Address) -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative transform scale-95 transition-transform duration-300 my-8 max-h-[90vh] overflow-y-auto">
+            <button onclick="app.closeCheckout()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700 p-1 rounded-full">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-2xl bg-botanical-900 text-white flex items-center justify-center font-bold">
+                    🔒
+                </div>
+                <div>
+                    <h3 class="text-xl font-extrabold text-botanical-950">Store Checkout</h3>
+                    <p class="text-xs text-gray-500">Instant digital access & global dropship fulfillment</p>
+                </div>
+            </div>
+
+            <form onsubmit="app.processPayment(event)" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Full Name *</label>
+                        <input type="text" id="checkout-name" required placeholder="Abena Mensah" class="w-full bg-cream border border-gray-300 rounded-xl px-3.5 py-2 text-xs font-semibold focus:outline-none focus:border-botanical-700" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Email Address *</label>
+                        <input type="email" id="checkout-email" required placeholder="abena@creator.io" class="w-full bg-cream border border-gray-300 rounded-xl px-3.5 py-2 text-xs font-semibold focus:outline-none focus:border-botanical-700" />
+                    </div>
+                </div>
+
+                <!-- DROPSHIPPING PHYSICAL SHIPPING ADDRESS FIELDS (Shown automatically if cart contains dropship goods) -->
+                <div id="checkout-shipping-fields" class="hidden bg-amber-50/70 p-4 rounded-2xl border border-amber-200 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-extrabold text-amber-900 uppercase tracking-wider flex items-center gap-1">
+                            📦 Worldwide Shipping Address
+                        </span>
+                        <span class="text-[10px] text-amber-700 font-semibold">Required for Dropship Items</span>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-700 uppercase mb-1">Street Address *</label>
+                        <input type="text" id="checkout-street" placeholder="124 Innovation Way, Suite 4B" class="w-full bg-white border border-amber-300 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-botanical-700" />
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2">
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-700 uppercase mb-1">City *</label>
+                            <input type="text" id="checkout-city" placeholder="Accra" class="w-full bg-white border border-amber-300 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-botanical-700" />
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-700 uppercase mb-1">Country *</label>
+                            <input type="text" id="checkout-country" placeholder="Ghana / USA" class="w-full bg-white border border-amber-300 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-botanical-700" />
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-700 uppercase mb-1">Postal Code</label>
+                            <input type="text" id="checkout-zip" placeholder="00233" class="w-full bg-white border border-amber-300 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-botanical-700" />
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Select Payment Method</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <label class="border-2 border-botanical-700 bg-botanical-50/50 p-3 rounded-xl cursor-pointer text-center flex flex-col items-center justify-center hover:border-botanical-800">
+                            <input type="radio" name="payment" value="card" checked class="hidden" />
+                            <span class="text-xs font-bold text-botanical-950">💳 Card</span>
+                        </label>
+                        <label class="border border-gray-200 p-3 rounded-xl cursor-pointer text-center flex flex-col items-center justify-center hover:border-botanical-700">
+                            <input type="radio" name="payment" value="apple" class="hidden" />
+                            <span class="text-xs font-bold text-gray-800">🍎 Apple Pay</span>
+                        </label>
+                        <label class="border border-gray-200 p-3 rounded-xl cursor-pointer text-center flex flex-col items-center justify-center hover:border-botanical-700">
+                            <input type="radio" name="payment" value="crypto" class="hidden" />
+                            <span class="text-xs font-bold text-gray-800">⚡ Crypto</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="bg-cream p-4 rounded-2xl border border-gray-200 space-y-1 text-xs">
+                    <div class="flex justify-between text-gray-600">
+                        <span>Items in Order:</span>
+                        <span id="checkout-item-count" class="font-bold text-gray-900">0</span>
+                    </div>
+                    <div class="flex justify-between text-gray-600">
+                        <span>Shipping Fee:</span>
+                        <span id="checkout-shipping-summary" class="font-bold text-botanical-800">FREE</span>
+                    </div>
+                    <div class="flex justify-between text-sm font-extrabold text-botanical-950 pt-1 border-t border-gray-200">
+                        <span>Total Due:</span>
+                        <span id="checkout-total-price">$0.00</span>
+                    </div>
+                </div>
+
+                <button 
+                    type="submit" 
+                    id="pay-submit-btn" 
+                    class="w-full bg-citrus-600 hover:bg-citrus-500 text-white font-extrabold py-3.5 rounded-2xl transition-all shadow-glow flex items-center justify-center gap-2 text-sm"
+                >
+                    <span>Complete Order & View Tracking</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- ORDER CONFIRMATION SUCCESS MODAL -->
+    <div id="success-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl text-center relative transform scale-95 transition-transform duration-300">
+            <div class="w-16 h-16 bg-botanical-100 text-botanical-700 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                🎉
+            </div>
+            <h3 class="text-2xl font-extrabold text-botanical-950">Order Complete!</h3>
+            <p class="text-xs text-gray-600 mt-2">
+                Thank you! Your order details, license keys & dropship tracking have been saved to <b>My Library & Orders</b>.
+            </p>
+
+            <div class="my-6 bg-cream p-4 rounded-2xl border border-gray-200 text-left space-y-2" id="success-items-list">
+                <!-- Javascript dynamic purchased list -->
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <button onclick="app.closeSuccessModal(); app.toggleLibrary(true);" class="w-full bg-botanical-900 hover:bg-botanical-800 text-white font-bold py-3.5 rounded-2xl transition-all text-sm shadow-md">
+                    Open My Library & Orders 📂
+                </button>
+                <button onclick="app.closeSuccessModal()" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-2.5 rounded-2xl text-xs transition-colors">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- LEGAL & POLICY MODAL -->
+    <div id="policy-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="app.closePolicyModal()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700 p-1 rounded-full">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div id="policy-modal-content">
+                <!-- Javascript policy content -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- FORWARD TO SUPPLIER MODAL (DROPSHIP FULFILLMENT WORKFLOW) -->
+    <div id="supplier-forward-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl relative">
+            <button onclick="app.closeSupplierModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="flex items-center gap-2.5 mb-4">
+                <span class="text-2xl">📦</span>
+                <div>
+                    <h3 class="text-lg font-extrabold text-botanical-950">Forward Order to Dropship Supplier</h3>
+                    <p class="text-xs text-gray-500">Auto-generated dispatch manifest for fulfillment</p>
+                </div>
+            </div>
+
+            <div id="supplier-forward-content" class="space-y-3">
+                <!-- Javascript dynamic manifest -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- EXPANDED MULTI-TAB ADMIN COMMAND CENTER MODAL -->
+    <div id="admin-studio-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-5xl w-full p-6 sm:p-8 shadow-2xl relative transform scale-95 transition-transform duration-300 my-8 max-h-[92vh] overflow-y-auto">
+            <button onclick="app.closeAdminStudio()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700 p-1 rounded-full z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+
+            <!-- VIEW 1: PIN AUTHENTICATION LOCK SCREEN -->
+            <div id="admin-lock-view" class="text-center py-8">
+                <div class="w-16 h-16 bg-botanical-900 text-citrus-500 rounded-3xl flex items-center justify-center text-3xl mx-auto mb-4 shadow-md">
+                    🔒
+                </div>
+                <h3 class="text-2xl font-extrabold text-botanical-950">Admin Command Center</h3>
+                <p class="text-xs text-gray-600 mt-1 mb-6">Enter security PIN to manage store catalog, dropship suppliers, orders & analytics.</p>
+
+                <form onsubmit="app.verifyAdminPin(event)" class="max-w-xs mx-auto space-y-4">
+                    <div>
+                        <input 
+                            type="password" 
+                            id="admin-pin-input" 
+                            required 
+                            placeholder="Enter PIN (Default: abena2026!)" 
+                            class="w-full bg-cream border border-gray-300 rounded-xl px-4 py-3 text-center text-sm font-bold focus:outline-none focus:border-botanical-700 tracking-widest"
+                        />
+                    </div>
+                    <button type="submit" class="w-full bg-botanical-900 hover:bg-botanical-800 text-white font-extrabold py-3 rounded-2xl text-xs transition-all shadow-md">
+                        Unlock Admin Studio
+                    </button>
+                    <p class="text-[11px] text-gray-400 pt-2">Default Admin PIN: <code class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-700 font-mono">abena2026!</code></p>
+                </form>
+            </div>
+
+            <!-- VIEW 2: AUTHENTICATED MULTI-TAB ADMIN DASHBOARD -->
+            <div id="admin-dashboard-view" class="hidden">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 pb-4 border-b border-gray-200 gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-2xl bg-botanical-900 text-citrus-500 flex items-center justify-center font-bold text-xl shadow-md">
+                            ⚡
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-extrabold text-botanical-950">Admin Command Center</h3>
+                            <p class="text-xs text-gray-500">Live Management Dashboard, Dropshipping & Analytics</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 live-pulse"></span> Store Active
+                        </span>
+                        <button onclick="app.logoutAdmin()" class="bg-red-50 hover:bg-red-100 text-red-600 font-bold px-3.5 py-1.5 rounded-xl text-xs transition-colors">
+                            Logout
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ADMIN 5-TAB NAVIGATION BAR -->
+                <div class="flex bg-cream p-1.5 rounded-2xl mb-6 border border-gray-200 overflow-x-auto no-scrollbar gap-1">
+                    <button id="adm-tab-overview" onclick="app.switchAdminTab('overview')" class="flex-1 py-2.5 px-3 rounded-xl text-xs font-extrabold transition-all bg-white text-botanical-950 shadow-sm whitespace-nowrap">
+                        📊 Overview & Analytics
+                    </button>
+                    <button id="adm-tab-catalog" onclick="app.switchAdminTab('catalog')" class="flex-1 py-2.5 px-3 rounded-xl text-xs font-extrabold transition-all text-gray-600 hover:text-gray-900 whitespace-nowrap">
+                        📦 Catalog & Dropship
+                    </button>
+                    <button id="adm-tab-orders" onclick="app.switchAdminTab('orders')" class="flex-1 py-2.5 px-3 rounded-xl text-xs font-extrabold transition-all text-gray-600 hover:text-gray-900 whitespace-nowrap relative">
+                        🚚 Orders & Fulfillment
+                        <span id="adm-pending-orders-badge" class="hidden bg-citrus-600 text-white text-[10px] font-bold px-1.5 py-0.2 rounded-full ml-1">0</span>
+                    </button>
+                    <button id="adm-tab-suppliers" onclick="app.switchAdminTab('suppliers')" class="flex-1 py-2.5 px-3 rounded-xl text-xs font-extrabold transition-all text-gray-600 hover:text-gray-900 whitespace-nowrap">
+                        🤝 Suppliers & Promos
+                    </button>
+                    <button id="adm-tab-settings" onclick="app.switchAdminTab('settings')" class="flex-1 py-2.5 px-3 rounded-xl text-xs font-extrabold transition-all text-gray-600 hover:text-gray-900 whitespace-nowrap">
+                        ⚙️ Settings & Data
+                    </button>
+                </div>
+
+
+                <!-- TAB 1: OVERVIEW & ANALYTICS -->
+                <div id="adm-sec-overview" class="space-y-6">
+                    <!-- KPI Cards -->
+                    <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+                        <div class="bg-cream p-4 rounded-2xl border border-gray-200">
+                            <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block mb-1">Gross Revenue</span>
+                            <span id="kpi-gross-revenue" class="text-xl font-extrabold text-botanical-950">$0.00</span>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200">
+                            <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider block mb-1">Estimated Net Profit</span>
+                            <span id="kpi-net-profit" class="text-xl font-extrabold text-emerald-900">$0.00</span>
+                        </div>
+                        <div class="bg-cream p-4 rounded-2xl border border-gray-200">
+                            <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block mb-1">Total Orders</span>
+                            <span id="kpi-total-orders" class="text-xl font-extrabold text-botanical-950">0</span>
+                        </div>
+                        <div class="bg-cream p-4 rounded-2xl border border-gray-200">
+                            <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block mb-1">Catalog Items</span>
+                            <span id="kpi-catalog-items" class="text-xl font-extrabold text-botanical-950">0</span>
+                        </div>
+                        <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 col-span-2 lg:col-span-1">
+                            <span class="text-[10px] font-bold text-amber-800 uppercase tracking-wider block mb-1">Pending Dropship</span>
+                            <span id="kpi-pending-dropship" class="text-xl font-extrabold text-amber-900">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Revenue Category Distribution Visualizer -->
+                    <div class="bg-cream p-5 rounded-2xl border border-gray-200">
+                        <h4 class="text-xs font-extrabold text-botanical-950 uppercase tracking-wider mb-3">Catalog Distribution & Category Share</h4>
+                        <div class="space-y-3" id="category-distribution-bars">
+                            <!-- Javascript populated distribution -->
+                        </div>
+                    </div>
+
+                    <!-- Quick Action Shortcuts -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <button onclick="app.switchAdminTab('catalog'); app.scrollToAdminForm();" class="bg-botanical-900 hover:bg-botanical-800 text-white font-bold p-4 rounded-2xl text-xs transition-all text-left flex items-center justify-between shadow-sm">
+                            <div>
+                                <span class="block text-sm">+ Add Product / Dropship</span>
+                                <span class="text-[10px] text-botanical-200 font-normal">Publish new digital or physical item</span>
+                            </div>
+                            <span class="text-lg">➔</span>
+                        </button>
+                        <button onclick="app.switchAdminTab('orders')" class="bg-amber-500 hover:bg-amber-600 text-white font-bold p-4 rounded-2xl text-xs transition-all text-left flex items-center justify-between shadow-sm">
+                            <div>
+                                <span class="block text-sm">🚚 Manage Dropship Orders</span>
+                                <span class="text-[10px] text-amber-100 font-normal">Forward manifests to suppliers</span>
+                            </div>
+                            <span class="text-lg">➔</span>
+                        </button>
+                        <button onclick="app.switchAdminTab('suppliers')" class="bg-citrus-600 hover:bg-citrus-500 text-white font-bold p-4 rounded-2xl text-xs transition-all text-left flex items-center justify-between shadow-sm">
+                            <div>
+                                <span class="block text-sm">🤝 Add Promo & Suppliers</span>
+                                <span class="text-[10px] text-citrus-100 font-normal">Configure supplier network & codes</span>
+                            </div>
+                            <span class="text-lg">➔</span>
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- TAB 2: CATALOG & DROPSHIP MANAGER -->
+                <div id="adm-sec-catalog" class="hidden space-y-6">
+                    
+                    <!-- Add / Edit Product Form Card -->
+                    <div class="bg-cream p-5 rounded-2xl border border-gray-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 id="prod-form-title" class="text-xs font-extrabold text-botanical-950 uppercase tracking-wider">Publish New Product or Dropship Item</h4>
+                            <button id="cancel-edit-prod-btn" onclick="app.cancelEditProduct()" class="hidden text-xs text-citrus-600 hover:underline font-bold">
+                                Cancel Editing
+                            </button>
+                        </div>
+
+                        <form id="admin-prod-form" onsubmit="app.saveProductForm(event)" class="space-y-4">
+                            <input type="hidden" id="edit-prod-id" value="" />
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-700 uppercase mb-1">Product Title *</label>
+                                    <input type="text" id="adm-p-title" required placeholder="e.g. Botanical Desk Pad" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-botanical-700" />
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-700 uppercase mb-1">Category *</label>
+                                    <select id="adm-p-category" required onchange="app.handleFormCategoryChange(this.value)" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-botanical-700">
+                                        <option value="apps">Mac & Web App</option>
+                                        <option value="digital">Digital Workspace / Template</option>
+                                        <option value="courses">Masterclass / Course</option>
+                                        <option value="dropship">📦 Dropship Physical Product</option>
+                                        <option value="affiliate">Vetted Hardware / Gear</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-700 uppercase mb-1">Retail Selling Price ($ USD) *</label>
+                                    <input type="number" step="0.01" min="0" id="adm-p-price" required placeholder="28.00" oninput="app.calcProfitMargin()" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-botanical-700" />
+                                </div>
+                            </div>
+
+                            <!-- DROPSHIPPING SPECIFIC FORM FIELDS (Shown when category === 'dropship') -->
+                            <div id="adm-dropship-fields" class="bg-amber-50/80 p-4 rounded-xl border border-amber-200 space-y-3">
+                                <span class="text-xs font-extrabold text-amber-900 uppercase tracking-wider block">📦 Dropship Logistics & Cost Metadata</span>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-700 uppercase mb-1">Supplier *</label>
+                                        <select id="adm-p-supplier" class="w-full bg-white border border-amber-300 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-botanical-700">
+                                            <!-- JavaScript Populated -->
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-700 uppercase mb-1">Wholesale Unit Cost ($ USD) *</label>
+                                        <input type="number" step="0.01" min="0" id="adm-p-wholesale" placeholder="12.00" oninput="app.calcProfitMargin()" class="w-full bg-white border border-amber-300 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-botanical-700" />
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-700 uppercase mb-1">Est. Shipping Time</label>
+                                        <input type="text" id="adm-p-shipping" placeholder="e.g. 4-7 Business Days" class="w-full bg-white border border-amber-300 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-botanical-700" />
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-between bg-white p-3 rounded-xl border border-amber-200">
+                                    <div>
+                                        <span class="text-[10px] text-gray-500 uppercase font-bold block">Profit Margin Calculator</span>
+                                        <span id="adm-margin-display" class="text-sm font-extrabold text-botanical-950">Profit: $0.00 (0.0% Margin)</span>
+                                    </div>
+                                    <div>
+                                        <label class="text-[10px] font-bold text-gray-700 uppercase mr-2">Stock Status:</label>
+                                        <select id="adm-p-stock" class="bg-cream border border-gray-300 rounded-lg px-2 py-1 text-xs font-semibold">
+                                            <option value="In Stock">In Stock</option>
+                                            <option value="Low Stock">Low Stock</option>
+                                            <option value="Pre-order">Pre-order</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-700 uppercase mb-1">Badge Tag</label>
+                                    <input type="text" id="adm-p-badge" placeholder="STAFF PICK / BEST SELLER" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-botanical-700" />
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-700 uppercase mb-1">Icon</label>
+                                    <select id="adm-p-icon" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-botanical-700">
+                                        <option value="📦">📦 Dropship Package</option>
+                                        <option value="⚡">⚡ Lightning App</option>
+                                        <option value="🧠">🧠 Notion / Brain</option>
+                                        <option value="🎓">🎓 Course / Education</option>
+                                        <option value="⌨️">⌨️ Hardware / Keyboard</option>
+                                        <option value="🎨">🎨 Design Asset</option>
+                                        <option value="💡">💡 Tech Gear</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-700 uppercase mb-1">Theme Gradient</label>
+                                    <select id="adm-p-bg" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-botanical-700">
+                                        <option value="from-amber-600 to-citrus-600">Citrus Amber Warm</option>
+                                        <option value="from-botanical-800 to-botanical-950">Botanical Forest Green</option>
+                                        <option value="from-emerald-700 to-teal-900">Emerald Ocean Teal</option>
+                                        <option value="from-slate-700 to-slate-900">Slate Dark</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-700 uppercase mb-1">Short Description *</label>
+                                <input type="text" id="adm-p-short" required placeholder="One sentence summary..." class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-botanical-700" />
+                            </div>
+
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-700 uppercase mb-1">Full Description & Overview</label>
+                                <textarea id="adm-p-full" rows="2" placeholder="Full details, specifications..." class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-botanical-700"></textarea>
+                            </div>
+
+                            <button type="submit" id="adm-p-submit-btn" class="w-full bg-botanical-900 hover:bg-botanical-800 text-white font-extrabold py-3 rounded-xl text-xs transition-all shadow-md">
+                                Publish Item to Storefront
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Catalog Table -->
+                    <div class="bg-cream p-5 rounded-2xl border border-gray-200">
+                        <h4 class="text-xs font-extrabold text-botanical-950 uppercase tracking-wider mb-4">Catalog Management Table</h4>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-gray-200 text-[10px] font-extrabold text-gray-500 uppercase">
+                                        <th class="py-2.5 px-3">Item</th>
+                                        <th class="py-2.5 px-3">Category</th>
+                                        <th class="py-2.5 px-3">Retail Price</th>
+                                        <th class="py-2.5 px-3">Wholesale / Profit</th>
+                                        <th class="py-2.5 px-3">Stock Status</th>
+                                        <th class="py-2.5 px-3 text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adm-catalog-table-body" class="divide-y divide-gray-200 text-xs font-semibold text-gray-800">
+                                    <!-- Dynamic JavaScript Table Rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- TAB 3: ORDERS & DROPSHIP FULFILLMENT -->
+                <div id="adm-sec-orders" class="hidden space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <h4 class="text-xs font-extrabold text-botanical-950 uppercase tracking-wider">Customer Orders & Dropship Fulfillment Hub</h4>
+                            <p class="text-xs text-gray-500">Track purchases, dispatch orders to suppliers & assign tracking codes.</p>
+                        </div>
+
+                        <!-- Status Filter -->
+                        <div class="flex items-center gap-1.5 bg-cream p-1 rounded-xl border border-gray-200">
+                            <button onclick="app.filterOrders('all')" class="px-3 py-1 rounded-lg text-xs font-bold bg-white shadow-sm">All</button>
+                            <button onclick="app.filterOrders('pending')" class="px-3 py-1 rounded-lg text-xs font-bold text-amber-700">Pending</button>
+                            <button onclick="app.filterOrders('shipped')" class="px-3 py-1 rounded-lg text-xs font-bold text-blue-700">Shipped</button>
+                        </div>
+                    </div>
+
+                    <div id="adm-orders-list-container" class="space-y-4">
+                        <!-- Dynamic JavaScript Orders -->
+                    </div>
+                </div>
+
+
+                <!-- TAB 4: SUPPLIERS & PROMO CODES -->
+                <div id="adm-sec-suppliers" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    
+                    <!-- Dropshipping Supplier Directory -->
+                    <div class="bg-cream p-5 rounded-2xl border border-gray-200 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-xs font-extrabold text-botanical-950 uppercase tracking-wider">🤝 Dropship Supplier Directory</h4>
+                            <span class="text-[10px] font-bold bg-botanical-100 text-botanical-800 px-2 py-0.5 rounded-full" id="supplier-count-badge">0 Active</span>
+                        </div>
+
+                        <form onsubmit="app.saveSupplier(event)" class="space-y-2.5 bg-white p-3.5 rounded-xl border border-gray-200">
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-700 uppercase">Supplier Name *</label>
+                                    <input type="text" id="sup-name" required placeholder="Sustainable Eco Goods" class="w-full bg-cream border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs font-semibold" />
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-700 uppercase">Contact Email *</label>
+                                    <input type="email" id="sup-email" required placeholder="orders@ecogoods.io" class="w-full bg-cream border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs font-semibold" />
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-700 uppercase">Lead Time</label>
+                                    <input type="text" id="sup-lead" placeholder="3-5 Days" class="w-full bg-cream border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs font-semibold" />
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-700 uppercase">Region / Origin</label>
+                                    <input type="text" id="sup-region" placeholder="USA / Europe" class="w-full bg-cream border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs font-semibold" />
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full bg-botanical-900 hover:bg-botanical-800 text-white font-bold py-2 rounded-lg text-xs">
+                                + Save Supplier to Directory
+                            </button>
+                        </form>
+
+                        <div id="supplier-list-container" class="space-y-2">
+                            <!-- Dynamic Suppliers -->
+                        </div>
+                    </div>
+
+                    <!-- Discount Promo Codes Manager -->
+                    <div class="bg-cream p-5 rounded-2xl border border-gray-200 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-xs font-extrabold text-botanical-950 uppercase tracking-wider">🏷️ Promo Codes & Discounts</h4>
+                            <span class="text-[10px] font-bold bg-citrus-100 text-citrus-700 px-2 py-0.5 rounded-full" id="promo-count-badge">0 Codes</span>
+                        </div>
+
+                        <form onsubmit="app.savePromoCode(event)" class="space-y-2.5 bg-white p-3.5 rounded-xl border border-gray-200">
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-700 uppercase">Promo Code Name *</label>
+                                    <input type="text" id="pcode-name" required placeholder="SUMMER20" class="w-full bg-cream border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs font-bold uppercase" />
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-700 uppercase">Discount Percentage (%) *</label>
+                                    <input type="number" min="1" max="100" id="pcode-discount" required placeholder="20" class="w-full bg-cream border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs font-semibold" />
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full bg-citrus-600 hover:bg-citrus-500 text-white font-bold py-2 rounded-lg text-xs">
+                                + Create Promo Code
+                            </button>
+                        </form>
+
+                        <div id="promo-list-container" class="space-y-2">
+                            <!-- Dynamic Promos -->
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- TAB 5: STORE SETTINGS & DATA BACKUP -->
+                <div id="adm-sec-settings" class="hidden space-y-6">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Security PIN Settings -->
+                        <div class="bg-cream p-5 rounded-2xl border border-gray-200 space-y-3">
+                            <h4 class="text-xs font-extrabold text-botanical-950 uppercase tracking-wider">🔑 Security Admin PIN</h4>
+                            <p class="text-xs text-gray-500">Update the PIN required to access the Admin Command Center.</p>
+                            
+                            <form onsubmit="app.updateAdminPin(event)" class="space-y-3">
+                                <div>
+                                    <input 
+                                        type="password" 
+                                        id="new-admin-pin" 
+                                        required 
+                                        placeholder="Enter new Security PIN" 
+                                        class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-xs font-bold focus:outline-none focus:border-botanical-700"
+                                    />
+                                </div>
+                                <button type="submit" class="bg-citrus-600 hover:bg-citrus-500 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition-all w-full">
+                                    Update Security PIN
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Store Logistics & Currency -->
+                        <div class="bg-cream p-5 rounded-2xl border border-gray-200 space-y-3">
+                            <h4 class="text-xs font-extrabold text-botanical-950 uppercase tracking-wider">🌐 Store Currency & Flat Shipping Rate</h4>
+                            <div class="space-y-2 text-xs">
+                                <div class="flex justify-between items-center bg-white p-2.5 rounded-xl border border-gray-200">
+                                    <span class="font-bold">Store Currency</span>
+                                    <span class="font-mono font-bold text-botanical-900">USD ($)</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-white p-2.5 rounded-xl border border-gray-200">
+                                    <span class="font-bold">Dropshipping Standard Shipping</span>
+                                    <span class="font-bold text-amber-700">$4.99 (Free over $50)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Full Store JSON Export & Import -->
+                    <div class="bg-cream p-5 rounded-2xl border border-gray-200">
+                        <h4 class="text-xs font-extrabold text-botanical-950 uppercase tracking-wider mb-2">💾 Full Store Data Backup & JSON Restore</h4>
+                        <p class="text-xs text-gray-500 mb-4">Export products, podcasts, suppliers, orders, and promo codes into a single JSON file backup.</p>
+                        
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="app.exportCatalogJSON()" class="bg-botanical-900 hover:bg-botanical-800 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition-all shadow-sm flex items-center gap-1.5">
+                                <span>📥 Export Store JSON Backup</span>
+                            </button>
+                            <label class="bg-white hover:bg-gray-100 text-gray-800 border border-gray-300 font-bold px-4 py-2.5 rounded-xl text-xs cursor-pointer transition-all flex items-center gap-1.5">
+                                <span>📤 Import JSON Backup File</span>
+                                <input type="file" accept=".json" onchange="app.importCatalogJSON(event)" class="hidden" />
+                            </label>
+                            <button onclick="app.resetToDefaultCatalog()" class="bg-red-50 hover:bg-red-100 text-red-600 font-bold px-4 py-2.5 rounded-xl text-xs transition-all">
+                                🔄 Factory Reset Store
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JAVASCRIPT APPLICATION CORE ENGINE -->
+    <script>
+    /**
+     * Abena-Jiyu Multi-Tab E-Commerce & Dropshipping Engine
+     */
+
+    // Seed Data
+    const INITIAL_PRODUCTS = [
+        {
+            id: 9,
+            title: "Botanical Desk Pad & Keyboard Mat",
+            category: "dropship",
+            typeLabel: "Dropship Physical Product",
+            price: 28.00,
+            wholesaleCost: 12.00,
+            supplierName: "Sustainable Eco Goods",
+            shippingEstimate: "4–7 Business Days",
+            stockStatus: "In Stock",
+            rating: 4.9,
+            reviewsCount: 184,
+            badge: "Top Dropship",
+            imageBg: "from-amber-600 to-citrus-600",
+            icon: "📦",
+            shortDesc: "Eco-friendly felt & non-slip natural rubber desk mat for modern setups.",
+            fullDesc: "Crafted from high-density wool felt with an organic non-slip rubber base. Protects your desk surface while dampening mechanical keyboard sound profile.",
+            specs: ["Ships Worldwide", "4-7 Business Days", "90cm x 40cm", "Water Resistant"],
+            isCustom: false
+        },
+        {
+            id: 10,
+            title: "Lumina Ergonomic Monitor Light Bar",
+            category: "dropship",
+            typeLabel: "Dropship Physical Product",
+            price: 49.00,
+            wholesaleCost: 22.50,
+            supplierName: "Lumina Tech Co",
+            shippingEstimate: "5–9 Business Days",
+            stockStatus: "In Stock",
+            rating: 4.8,
+            reviewsCount: 96,
+            badge: "Eye Care",
+            imageBg: "from-slate-700 to-zinc-900",
+            icon: "💡",
+            shortDesc: "Asymmetric USB screenbar lighting with color temperature control.",
+            fullDesc: "Eliminates screen glare and reduces eye strain during late-night coding or design sessions. Features touch control auto-dimming sensors.",
+            specs: ["Ships Worldwide", "5-9 Business Days", "USB-C Powered", "Touch Dimming"],
+            isCustom: false
+        },
+        {
+            id: 1,
+            title: "FocusFlow Pro",
+            category: "apps",
+            typeLabel: "Mac / iOS App",
+            price: 14.99,
+            rating: 4.9,
+            reviewsCount: 128,
+            badge: "Staff Pick",
+            imageBg: "from-emerald-700 to-botanical-900",
+            icon: "⚡",
+            shortDesc: "Minimalist spatial focus timer & ambient lo-fi sound generator.",
+            fullDesc: "FocusFlow Pro is built for deep work sessions. Features Pomodoro intervals, native Apple Silicon optimization, and offline soundscapes.",
+            specs: ["macOS 14+", "iOS 17+", "Offline Mode", "Lifetime License Key"],
+            syllabus: ["Spatial Pomodoro Engine", "Lo-fi Audio Generator", "Menu-Bar Quick Controls"],
+            videoTrailer: "focusflow_preview",
+            isCustom: false
+        },
+        {
+            id: 2,
+            title: "Notion Creator OS 2026",
+            category: "digital",
+            typeLabel: "Digital Workspace",
+            price: 29.99,
+            rating: 4.9,
+            reviewsCount: 450,
+            badge: "Best Seller",
+            imageBg: "from-amber-600 to-citrus-600",
+            icon: "🧠",
+            shortDesc: "All-in-one system for content planning, revenue tracking & CRM.",
+            fullDesc: "Take complete control of your digital studio. Includes content calendar templates, sponsor deal tracker, and financial dashboards.",
+            specs: ["Instant Notion Duplicate", "Video Setup Walkthrough", "Lifetime Updates"],
+            syllabus: ["Content Pipeline DB", "Financial Forecast Dashboard", "Sponsor CRM System"],
+            isCustom: false
+        },
+        {
+            id: 3,
+            title: "Full-Stack Cloud & AI Mastery",
+            category: "courses",
+            typeLabel: "Video Masterclass",
+            price: 89.99,
+            rating: 5.0,
+            reviewsCount: 820,
+            badge: "42 HD Lessons",
+            imageBg: "from-botanical-800 to-teal-900",
+            icon: "🎓",
+            shortDesc: "Build real-world LLM-powered applications from zero to deployment.",
+            fullDesc: "Taught by Abena Amankwah. Learn vector databases, serverless APIs, authentication, and full UI deployment using modern web tech.",
+            specs: ["12.5 Hours HD Video", "Full Code Repositories", "Certificate of Completion"],
+            syllabus: ["Module 1: Vector Databases", "Module 2: Serverless Functions", "Module 3: Production Deployment"],
+            videoTrailer: "cloud_ai_mastery",
+            isCustom: false
+        },
+        {
+            id: 4,
+            title: "Keychron K2 Pro Mechanical Keyboard",
+            category: "affiliate",
+            typeLabel: "Vetted Hardware",
+            price: 99.00,
+            rating: 4.8,
+            reviewsCount: 310,
+            badge: "Partner Pick",
+            imageBg: "from-slate-700 to-slate-900",
+            icon: "⌨️",
+            affiliateUrl: "https://www.keychron.com",
+            shortDesc: "Wireless QMK/VIA tactile mechanical keyboard for peak typing focus.",
+            fullDesc: "Hot-swappable switches, double-shot PBT keycaps, and smooth Bluetooth 5.1 connection for Mac and Windows creator setups.",
+            specs: ["Wireless & Wired", "RGB Backlight", "QMK Programmable"],
+            isCustom: false
+        }
+    ];
+
+    const INITIAL_PODCASTS = [
+        {
+            id: 101,
+            title: "Ep 42: Building a $10k/mo Solo Digital Empire",
+            author: "Abena-Jiyu Studio",
+            duration: "34:00",
+            durationSeconds: 2040,
+            type: "Podcast Episode",
+            icon: "🎙️",
+            bg: "from-citrus-600 to-amber-500",
+            summary: "A deep dive into minimalist tech stacks, digital product validation, and building dropshipping streams in 2026.",
+            isCustom: false
+        },
+        {
+            id: 102,
+            title: "Ep 41: Why Aesthetic & Clean UI Boosts Daily Focus",
+            author: "Abena & Guest Designers",
+            duration: "28:15",
+            durationSeconds: 1695,
+            type: "Design Deep Dive",
+            icon: "✨",
+            bg: "from-botanical-800 to-botanical-950",
+            summary: "Exploring how deliberate graphic hierarchy and botanical color palettes reduce cognitive noise for power users.",
+            isCustom: false
+        }
+    ];
+
+    const INITIAL_SUPPLIERS = [
+        { id: 1, name: "Sustainable Eco Goods", email: "orders@ecogoods.io", leadTime: "3–5 Days", region: "USA / Europe" },
+        { id: 2, name: "Lumina Tech Co", email: "logistics@luminatech.com", leadTime: "5–8 Days", region: "Asia / Global" },
+        { id: 3, name: "Artisan Craft Studio", email: "orders@artisancraft.shop", leadTime: "4–6 Days", region: "UK / Global" }
+    ];
+
+    const INITIAL_PROMOS = [
+        { code: "ABENA10", discount: 10, active: true, usageCount: 142 },
+        { code: "FREESHIP", discount: 15, active: true, usageCount: 38 },
+        { code: "LAUNCH20", discount: 20, active: true, usageCount: 89 }
+    ];
+
+    const INITIAL_ORDERS = [
+        {
+            id: "ORD-9821-AJ",
+            customerName: "Kofi Mensah",
+            customerEmail: "kofi@creator.io",
+            date: "2026-03-28",
+            total: 28.00,
+            status: "pending",
+            isDropship: true,
+            shippingAddress: "45 Palm Avenue, Accra, Ghana",
+            trackingNumber: "",
+            items: [
+                { title: "Botanical Desk Pad & Keyboard Mat", price: 28.00, quantity: 1, category: "dropship", supplierName: "Sustainable Eco Goods" }
+            ]
+        },
+        {
+            id: "ORD-9820-AJ",
+            customerName: "Sarah Jenkins",
+            customerEmail: "sarah@tech.co",
+            date: "2026-03-27",
+            total: 14.99,
+            status: "delivered",
+            isDropship: false,
+            shippingAddress: "Digital Fulfillment",
+            trackingNumber: "N/A - Instant Download",
+            items: [
+                { title: "FocusFlow Pro", price: 14.99, quantity: 1, category: "apps" }
+            ]
+        }
+    ];
+
+    // Local Storage Wrappers
+    let PRODUCTS = JSON.parse(localStorage.getItem('abena_products')) || INITIAL_PRODUCTS;
+    let PODCASTS = JSON.parse(localStorage.getItem('abena_podcasts')) || INITIAL_PODCASTS;
+    let SUPPLIERS = JSON.parse(localStorage.getItem('abena_suppliers')) || INITIAL_SUPPLIERS;
+    let PROMO_CODES = JSON.parse(localStorage.getItem('abena_promos')) || INITIAL_PROMOS;
+    let ORDERS = JSON.parse(localStorage.getItem('abena_orders')) || INITIAL_ORDERS;
+    let USER_LIBRARY = JSON.parse(localStorage.getItem('abena_user_library')) || [];
+    let ADMIN_PIN = localStorage.getItem('abena_admin_pin') || "abena2026!";
+
+    function saveStoreToLocalStorage() {
+        localStorage.setItem('abena_products', JSON.stringify(PRODUCTS));
+        localStorage.setItem('abena_podcasts', JSON.stringify(PODCASTS));
+        localStorage.setItem('abena_suppliers', JSON.stringify(SUPPLIERS));
+        localStorage.setItem('abena_promos', JSON.stringify(PROMO_CODES));
+        localStorage.setItem('abena_orders', JSON.stringify(ORDERS));
+        localStorage.setItem('abena_user_library', JSON.stringify(USER_LIBRARY));
+        localStorage.setItem('abena_admin_pin', ADMIN_PIN);
+    }
+
+    // Audio Visualizer Synthesizer Engine
+    class AudioVisualizerSynth {
+        constructor() {
+            this.ctx = null;
+            this.isPlaying = false;
+            this.gainNode = null;
+            this.animFrame = null;
+        }
+
+        init() {
+            if (!this.ctx) {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (AudioCtx) this.ctx = new AudioCtx();
+            }
+        }
+
+        startTone(volume = 0.8) {
+            this.init();
+            if (!this.ctx) return;
+            if (this.ctx.state === 'suspended') this.ctx.resume();
+
+            try {
+                this.stopTone();
+                this.gainNode = this.ctx.createGain();
+                this.gainNode.gain.setValueAtTime(volume * 0.15, this.ctx.currentTime);
+
+                const osc1 = this.ctx.createOscillator();
+                const osc2 = this.ctx.createOscillator();
+                osc1.type = 'sine';
+                osc2.type = 'triangle';
+                osc1.frequency.setValueAtTime(220, this.ctx.currentTime);
+                osc2.frequency.setValueAtTime(277.18, this.ctx.currentTime);
+
+                const filter = this.ctx.createBiquadFilter();
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(600, this.ctx.currentTime);
+
+                osc1.connect(filter);
+                osc2.connect(filter);
+                filter.connect(this.gainNode);
+                this.gainNode.connect(this.ctx.destination);
+
+                osc1.start();
+                osc2.start();
+                this.isPlaying = true;
+                this.startWaveformAnimation();
+            } catch (e) {}
+        }
+
+        setVolume(vol) {
+            if (this.gainNode && this.ctx) {
+                this.gainNode.gain.setValueAtTime(vol * 0.15, this.ctx.currentTime);
+            }
+        }
+
+        stopTone() {
+            if (this.gainNode && this.ctx) {
+                try {
+                    this.gainNode.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.1);
+                } catch(e){}
+            }
+            this.isPlaying = false;
+            this.stopWaveformAnimation();
+        }
+
+        startWaveformAnimation() {
+            const canvas = document.getElementById('waveform-canvas');
+            if (!canvas) return;
+            const cctx = canvas.getContext('2d');
+            
+            const draw = () => {
+                if (!this.isPlaying) {
+                    cctx.clearRect(0, 0, canvas.width, canvas.height);
+                    return;
+                }
+                cctx.clearRect(0, 0, canvas.width, canvas.height);
+                cctx.fillStyle = '#E76F51';
+                
+                const numBars = 6;
+                const barWidth = 4;
+                const gap = 3;
+                
+                for (let i = 0; i < numBars; i++) {
+                    const height = Math.floor(Math.random() * (canvas.height - 2)) + 3;
+                    const x = i * (barWidth + gap) + 4;
+                    const y = (canvas.height - height) / 2;
+                    cctx.fillRect(x, y, barWidth, height);
+                }
+                this.animFrame = requestAnimationFrame(draw);
+            };
+            draw();
+        }
+
+        stopWaveformAnimation() {
+            if (this.animFrame) cancelAnimationFrame(this.animFrame);
+            const canvas = document.getElementById('waveform-canvas');
+            if (canvas) {
+                const cctx = canvas.getContext('2d');
+                cctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+    }
+
+    // MAIN APP CONTROLLER
+    const app = {
+        cart: [],
+        activeCategory: 'all',
+        searchQuery: '',
+        appliedPromoCode: null,
+        isAdminLoggedIn: false,
+        activeAdminTab: 'overview',
+        orderFilterStatus: 'all',
+
+        // Audio Player State
+        currentPodcast: null,
+        isPlayingAudio: false,
+        audioCurrentTime: 0,
+        audioDuration: 2040,
+        playbackSpeed: 1.0,
+        volume: 0.8,
+        audioInterval: null,
+        synthEngine: new AudioVisualizerSynth(),
+
+        init() {
+            this.renderCategoryPills();
+            this.renderProducts();
+            this.renderPodcasts();
+            this.updateCartUI();
+            this.updateLibraryUI();
+            this.populateSupplierDropdown();
+        },
+
+        showToast(message, icon = "✅") {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = "pointer-events-auto bg-botanical-950 text-white border border-botanical-700/50 px-4 py-3 rounded-2xl shadow-2xl text-xs font-semibold flex items-center gap-3 transform translate-y-4 opacity-0 transition-all duration-300";
+            toast.innerHTML = `
+                <span class="text-base">${icon}</span>
+                <span>${message}</span>
+            `;
+            container.appendChild(toast);
+
+            setTimeout(() => toast.classList.remove('translate-y-4', 'opacity-0'), 10);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', '-translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        },
+
+        scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        },
+
+        toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        },
+
+        // CATEGORY FILTER PILLS
+        renderCategoryPills() {
+            const container = document.getElementById('category-pills');
+            const categories = [
+                { id: 'all', label: 'All Catalog' },
+                { id: 'dropship', label: '📦 Dropship Store' },
+                { id: 'apps', label: 'Apps' },
+                { id: 'digital', label: 'Digital OS' },
+                { id: 'courses', label: 'Courses' },
+                { id: 'affiliate', label: 'Affiliate Gear' },
+            ];
+
+            container.innerHTML = categories.map(c => `
+                <button 
+                    onclick="app.setCategory('${c.id}')"
+                    class="px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap ${
+                        this.activeCategory === c.id 
+                        ? 'bg-botanical-900 text-white shadow-md' 
+                        : (c.id === 'dropship' ? 'bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100' : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200')
+                    }"
+                >
+                    ${c.label}
+                </button>
+            `).join('');
+        },
+
+        setCategory(cat) {
+            this.activeCategory = cat;
+            this.renderCategoryPills();
+            this.renderProducts();
+        },
+
+        handleSearch(query) {
+            this.searchQuery = query.toLowerCase().trim();
+            const clearBtn = document.getElementById('clear-search-btn');
+            if (this.searchQuery) clearBtn.classList.remove('hidden');
+            else clearBtn.classList.add('hidden');
+            this.renderProducts();
+        },
+
+        clearSearch() {
+            this.searchQuery = '';
+            document.getElementById('search-input').value = '';
+            document.getElementById('clear-search-btn').classList.add('hidden');
+            this.renderProducts();
+        },
+
+        // RENDER PRODUCTS GRID
+        renderProducts() {
+            const container = document.getElementById('product-grid');
+            const emptyState = document.getElementById('empty-state');
+
+            const filtered = PRODUCTS.filter(p => {
+                const matchesCategory = this.activeCategory === 'all' || p.category === this.activeCategory;
+                const matchesSearch = p.title.toLowerCase().includes(this.searchQuery) || 
+                                      p.shortDesc.toLowerCase().includes(this.searchQuery) ||
+                                      p.typeLabel.toLowerCase().includes(this.searchQuery);
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            container.innerHTML = filtered.map(p => {
+                const isDropship = p.category === 'dropship';
+                
+                return `
+                <div class="bg-white rounded-3xl border border-botanical-900/10 p-5 flex flex-col justify-between shadow-soft hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group relative">
+                    
+                    <div>
+                        <!-- Header Icon & Badge -->
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-11 h-11 rounded-2xl bg-gradient-to-br ${p.imageBg} text-white flex items-center justify-center text-xl font-bold shadow-md">
+                                ${p.icon}
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="text-[10px] font-extrabold px-3 py-1 rounded-full ${
+                                    isDropship 
+                                    ? 'bg-amber-100 text-amber-900 border border-amber-300' 
+                                    : (p.category === 'affiliate' ? 'bg-zinc-100 text-zinc-800' : 'bg-botanical-50 text-botanical-800 border border-botanical-600/20')
+                                }">
+                                    ${p.badge}
+                                </span>
+
+                                ${this.isAdminLoggedIn ? `
+                                    <button onclick="app.editProduct(${p.id}, event)" title="Edit Item" class="text-gray-400 hover:text-botanical-900 p-1 rounded-full hover:bg-gray-100 transition-colors">
+                                        ✏️
+                                    </button>
+                                    <button onclick="app.deleteProduct(${p.id}, event)" title="Delete Item" class="text-gray-400 hover:text-red-500 p-1 rounded-full hover:bg-red-50 transition-colors">
+                                        🗑️
+                                    </button>
+                                ` : ''}
+                            </div>
+                        </div>
+
+                        <!-- Logistics Tagline for Dropship -->
+                        ${isDropship ? `
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="text-[10px] font-extrabold uppercase tracking-widest text-amber-700">📦 Ships Worldwide</span>
+                                <span class="text-[9px] font-bold bg-emerald-100 text-emerald-800 px-1.5 py-0.2 rounded">${p.stockStatus || 'In Stock'}</span>
+                            </div>
+                        ` : `
+                            <span class="text-[10px] font-extrabold uppercase tracking-widest text-botanical-700 block mb-1">${p.typeLabel}</span>
+                        `}
+
+                        <h3 class="text-base font-extrabold text-gray-900 group-hover:text-botanical-800 transition-colors leading-snug mb-2">${p.title}</h3>
+                        <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed mb-3">${p.shortDesc}</p>
+                    </div>
+
+                    <div>
+                        <!-- Shipping estimate badge -->
+                        ${isDropship ? `
+                            <div class="text-[11px] font-semibold text-gray-500 bg-cream p-2 rounded-xl mb-3 border border-gray-200/80 flex items-center justify-between">
+                                <span>Est. Delivery:</span>
+                                <span class="font-bold text-gray-800">${p.shippingEstimate || '4-7 Days'}</span>
+                            </div>
+                        ` : ''}
+
+                        <!-- Price & Rating -->
+                        <div class="flex items-center justify-between pt-2 border-t border-gray-100 mb-4">
+                            <div class="flex items-center gap-1 text-xs font-bold text-gray-800">
+                                <span class="text-amber-500">★</span>
+                                <span>${p.rating}</span>
+                                <span class="text-gray-400 font-normal text-[11px]">(${p.reviewsCount})</span>
+                            </div>
+                            <div class="text-base font-extrabold text-botanical-950">
+                                $${p.price.toFixed(2)}
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="grid grid-cols-2 gap-2">
+                            <button 
+                                onclick="app.quickView(${p.id})" 
+                                class="w-full bg-cream hover:bg-gray-200 text-gray-700 font-bold py-2.5 rounded-xl text-xs transition-colors"
+                            >
+                                Details
+                            </button>
+
+                            ${p.category === 'affiliate' ? `
+                                <button 
+                                    onclick="app.openAffiliateModal(${p.id})" 
+                                    class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-2.5 rounded-xl text-xs transition-colors flex items-center justify-center gap-1 shadow-sm"
+                                >
+                                    <span>View Deal</span>
+                                    <span class="text-[10px]">↗</span>
+                                </button>
+                            ` : `
+                                <button 
+                                    onclick="app.addToCart(${p.id})" 
+                                    class="w-full ${isDropship ? 'bg-amber-600 hover:bg-amber-500' : 'bg-botanical-900 hover:bg-botanical-800'} text-white font-bold py-2.5 rounded-xl text-xs transition-colors shadow-sm flex items-center justify-center gap-1"
+                                >
+                                    <span>+ Add</span>
+                                </button>
+                            `}
+                        </div>
+                    </div>
+
+                </div>
+            `;
+            }).join('');
+        },
+
+        renderPodcasts() {
+            const container = document.getElementById('podcast-cards-container');
+            container.innerHTML = PODCASTS.map(pod => `
+                <div class="bg-white rounded-3xl border border-botanical-900/10 p-6 flex flex-col justify-between shadow-soft hover:shadow-lg transition-all relative group">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr ${pod.bg} text-white flex items-center justify-center text-lg shadow-sm">
+                                ${pod.icon}
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-semibold text-gray-500">${pod.duration}</span>
+                                ${this.isAdminLoggedIn ? `
+                                    <button onclick="app.editPodcast(${pod.id}, event)" title="Edit Episode" class="text-gray-400 hover:text-botanical-900 p-1">✏️</button>
+                                    <button onclick="app.deletePodcast(${pod.id}, event)" title="Delete Episode" class="text-gray-400 hover:text-red-500 p-1">🗑️</button>
+                                ` : ''}
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-citrus-600">${pod.type}</span>
+                        <h3 class="text-base font-bold text-gray-900 mt-1 mb-2 leading-snug">${pod.title}</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed mb-4">${pod.summary}</p>
+                    </div>
+                    
+                    <button 
+                        onclick="app.playPodcast(${pod.id})"
+                        class="w-full bg-botanical-50 hover:bg-botanical-900 text-botanical-900 hover:text-white font-bold py-3 rounded-2xl text-xs transition-all flex items-center justify-center gap-2"
+                    >
+                        <svg class="w-4 h-4 fill-current text-citrus-600" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        <span>Listen Episode</span>
+                    </button>
+                </div>
+            `).join('');
+        },
+
+        // QUICK VIEW MODAL
+        quickView(id) {
+            const product = PRODUCTS.find(p => p.id === id);
+            if (!product) return;
+
+            const modal = document.getElementById('quickview-modal');
+            const card = document.getElementById('quickview-card');
+            const content = document.getElementById('quickview-content');
+            const isDropship = product.category === 'dropship';
+
+            content.innerHTML = `
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-1/3 flex flex-col items-center justify-center p-6 rounded-3xl bg-gradient-to-br ${product.imageBg} text-white text-center shadow-md">
+                        <div class="text-5xl mb-3">${product.icon}</div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-white/80">${product.typeLabel}</span>
+                        <span class="mt-2 text-2xl font-extrabold">$${product.price.toFixed(2)}</span>
+                    </div>
+                    
+                    <div class="md:w-2/3 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-xs font-bold ${isDropship ? 'text-amber-700' : 'text-citrus-600'} uppercase tracking-wider">${product.badge}</span>
+                                <div class="flex items-center gap-1 text-xs font-bold text-amber-500">★ ${product.rating}</div>
+                            </div>
+                            <h2 class="text-2xl font-extrabold text-botanical-950 mt-1 mb-2">${product.title}</h2>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-4">${product.fullDesc}</p>
+                            
+                            ${isDropship ? `
+                                <div class="bg-amber-50 p-3.5 rounded-2xl border border-amber-200 mb-4 space-y-1.5">
+                                    <h4 class="text-xs font-extrabold text-amber-900 uppercase">📦 Dropship Delivery Specs</h4>
+                                    <div class="grid grid-cols-2 gap-2 text-xs text-gray-700">
+                                        <div><b>Supplier:</b> ${product.supplierName || 'Verified Partner'}</div>
+                                        <div><b>Est. Shipping:</b> ${product.shippingEstimate || '4-7 Days'}</div>
+                                        <div><b>Stock Status:</b> ${product.stockStatus || 'In Stock'}</div>
+                                        <div><b>Fulfillment:</b> Express Global Tracked</div>
+                                    </div>
+                                </div>
+                            ` : ''}
+
+                            ${product.syllabus ? `
+                                <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider mb-2">Module Deliverables</h4>
+                                <ul class="space-y-1 text-xs text-gray-600 mb-4 bg-cream p-3 rounded-xl border border-gray-200">
+                                    ${product.syllabus.map(s => `<li class="flex items-center gap-2"><span class="text-citrus-600 font-bold">▶</span> ${s}</li>`).join('')}
+                                </ul>
+                            ` : ''}
+
+                            <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider mb-2">Features & Specifications</h4>
+                            <ul class="grid grid-cols-2 gap-1.5 text-xs text-gray-600 mb-6">
+                                ${product.specs.map(s => `<li class="flex items-center gap-1.5"><span class="text-botanical-600 font-bold">✓</span> ${s}</li>`).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="flex gap-3 pt-4 border-t border-gray-100">
+                            ${product.videoTrailer ? `
+                                <button onclick="app.closeQuickView(); app.openVideoModal(${product.id})" class="bg-citrus-100 hover:bg-citrus-200 text-citrus-700 font-bold px-4 py-3 rounded-2xl text-xs transition-colors flex items-center gap-1">
+                                    🎬 Trailer
+                                </button>
+                            ` : ''}
+
+                            ${product.category === 'affiliate' ? `
+                                <button onclick="app.closeQuickView(); app.openAffiliateModal(${product.id})" class="flex-1 bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 rounded-2xl text-xs transition-all shadow-md">
+                                    View Partner Deal ↗
+                                </button>
+                            ` : `
+                                <button onclick="app.addToCart(${product.id}); app.closeQuickView()" class="flex-1 ${isDropship ? 'bg-amber-600 hover:bg-amber-500' : 'bg-botanical-900 hover:bg-botanical-800'} text-white font-bold py-3 rounded-2xl text-xs transition-all shadow-md">
+                                    Add to Bag — $${product.price.toFixed(2)}
+                                </button>
+                            `}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            card.classList.remove('scale-95');
+            card.classList.add('scale-100');
+        },
+
+        closeQuickView() {
+            const modal = document.getElementById('quickview-modal');
+            const card = document.getElementById('quickview-card');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+        },
+
+        // VIDEO MODAL PLAYER
+        openVideoModal(productId) {
+            const product = PRODUCTS.find(p => p.id === productId) || PRODUCTS[2];
+            const content = document.getElementById('video-modal-content');
+
+            content.innerHTML = `
+                <div class="aspect-video bg-black relative flex items-center justify-center border-b border-botanical-800">
+                    <div class="text-center p-8">
+                        <div class="w-16 h-16 rounded-full bg-citrus-600 text-white flex items-center justify-center text-2xl mx-auto mb-4 live-pulse shadow-glow">
+                            ▶
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-1">${product.title} — Lesson Preview</h3>
+                        <p class="text-xs text-botanical-100/70">Sample Video Stream Active (02:15)</p>
+                    </div>
+                </div>
+                <div class="p-6 bg-botanical-950 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div>
+                        <span class="text-xs text-citrus-500 font-bold uppercase tracking-widest">${product.typeLabel}</span>
+                        <h4 class="text-base font-extrabold text-white">${product.title}</h4>
+                    </div>
+                    <button onclick="app.closeVideoModal(); app.addToCart(${product.id})" class="bg-citrus-600 hover:bg-citrus-500 text-white font-bold px-6 py-2.5 rounded-full text-xs shadow-glow">
+                        Unlock Masterclass — $${product.price.toFixed(2)}
+                    </button>
+                </div>
+            `;
+
+            const modal = document.getElementById('video-modal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        },
+
+        closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        },
+
+        // SHOPPING CART & CHECKOUT
+        addToCart(id) {
+            const product = PRODUCTS.find(p => p.id === id);
+            if (!product) return;
+
+            const existing = this.cart.find(item => item.id === id);
+            if (existing) existing.quantity += 1;
+            else this.cart.push({ ...product, quantity: 1 });
+
+            this.updateCartUI();
+            this.showToast(`Added "${product.title}" to bag!`, product.category === 'dropship' ? "📦" : "🛍️");
+        },
+
+        removeFromCart(id) {
+            this.cart = this.cart.filter(item => item.id !== id);
+            this.updateCartUI();
+        },
+
+        updateQuantity(id, delta) {
+            const item = this.cart.find(i => i.id === id);
+            if (!item) return;
+            item.quantity += delta;
+            if (item.quantity <= 0) this.removeFromCart(id);
+            else this.updateCartUI();
+        },
+
+        toggleCart(open) {
+            const backdrop = document.getElementById('cart-drawer-backdrop');
+            const drawer = document.getElementById('cart-drawer');
+
+            if (open) {
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                drawer.classList.remove('translate-x-full');
+            } else {
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                drawer.classList.add('translate-x-full');
+            }
+        },
+
+        applyPromoCode() {
+            const codeInput = document.getElementById('promo-input').value.trim().toUpperCase();
+            const promo = PROMO_CODES.find(p => p.code === codeInput && p.active);
+
+            if (promo) {
+                this.appliedPromoCode = promo;
+                promo.usageCount += 1;
+                saveStoreToLocalStorage();
+                this.showToast(`Promo '${promo.code}' applied (${promo.discount}% Off)!`, "🎉");
+                this.updateCartUI();
+            } else {
+                this.showToast("Invalid or expired promo code.", "⚠️");
+            }
+        },
+
+        updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const container = document.getElementById('cart-items-container');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const discountRow = document.getElementById('promo-row');
+            const discountLabel = document.getElementById('promo-row-label');
+            const discountEl = document.getElementById('cart-discount');
+            const shippingFeeEl = document.getElementById('cart-shipping-fee');
+            const totalEl = document.getElementById('cart-total');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            const dropshipNotice = document.getElementById('cart-dropship-notice');
+
+            const totalItemsCount = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+            badge.innerText = totalItemsCount;
+
+            const hasDropship = this.cart.some(i => i.category === 'dropship');
+            if (hasDropship) dropshipNotice.classList.remove('hidden');
+            else dropshipNotice.classList.add('hidden');
+
+            if (this.cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12">
+                        <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center text-2xl mx-auto mb-3 text-gray-400">🛍️</div>
+                        <p class="text-sm font-bold text-gray-700">Your bag is empty</p>
+                        <p class="text-xs text-gray-400 mt-1">Explore our catalog to add tools, courses or dropship goods.</p>
+                    </div>
+                `;
+                subtotalEl.innerText = "$0.00";
+                totalEl.innerText = "$0.00";
+                checkoutBtn.disabled = true;
+                discountRow.classList.add('hidden');
+                return;
+            }
+
+            checkoutBtn.disabled = false;
+
+            container.innerHTML = this.cart.map(item => `
+                <div class="flex items-center justify-between p-3.5 bg-white rounded-2xl border border-gray-200/80 shadow-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr ${item.imageBg} text-white flex items-center justify-center text-base font-bold flex-shrink-0">
+                            ${item.icon}
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900 leading-tight">${item.title}</h4>
+                            <span class="text-[10px] text-gray-400">${item.typeLabel}</span>
+                            <div class="text-xs font-extrabold text-botanical-900 mt-0.5">$${(item.price * item.quantity).toFixed(2)}</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <div class="flex items-center border border-gray-200 rounded-lg bg-cream">
+                            <button onclick="app.updateQuantity(${item.id}, -1)" class="px-2 py-0.5 text-xs text-gray-600 hover:text-black">-</button>
+                            <span class="text-xs font-bold px-2">${item.quantity}</span>
+                            <button onclick="app.updateQuantity(${item.id}, 1)" class="px-2 py-0.5 text-xs text-gray-600 hover:text-black">+</button>
+                        </div>
+                        <button onclick="app.removeFromCart(${item.id})" class="text-gray-300 hover:text-red-500 p-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            let discount = 0;
+            if (this.appliedPromoCode) {
+                discount = subtotal * (this.appliedPromoCode.discount / 100);
+                discountRow.classList.remove('hidden');
+                discountLabel.innerText = `Promo '${this.appliedPromoCode.code}' (${this.appliedPromoCode.discount}%)`;
+                discountEl.innerText = `-$${discount.toFixed(2)}`;
+            } else {
+                discountRow.classList.add('hidden');
+            }
+
+            const shippingFee = hasDropship && subtotal < 50 ? 4.99 : 0;
+            shippingFeeEl.innerText = shippingFee > 0 ? `$${shippingFee.toFixed(2)}` : "FREE";
+
+            const grandTotal = Math.max(0, subtotal - discount + shippingFee);
+            subtotalEl.innerText = `$${subtotal.toFixed(2)}`;
+            totalEl.innerText = `$${grandTotal.toFixed(2)}`;
+        },
+
+        openCheckout() {
+            this.toggleCart(false);
+            const modal = document.getElementById('checkout-modal');
+            const shippingFields = document.getElementById('checkout-shipping-fields');
+
+            const hasDropship = this.cart.some(i => i.category === 'dropship');
+            if (hasDropship) shippingFields.classList.remove('hidden');
+            else shippingFields.classList.add('hidden');
+
+            const totalCount = this.cart.reduce((s, i) => s + i.quantity, 0);
+            const subtotal = this.cart.reduce((s, i) => s + (i.price * i.quantity), 0);
+            const discount = this.appliedPromoCode ? subtotal * (this.appliedPromoCode.discount / 100) : 0;
+            const shippingFee = hasDropship && subtotal < 50 ? 4.99 : 0;
+            const finalTotal = subtotal - discount + shippingFee;
+
+            document.getElementById('checkout-item-count').innerText = totalCount;
+            document.getElementById('checkout-shipping-summary').innerText = shippingFee > 0 ? `$${shippingFee.toFixed(2)}` : "FREE";
+            document.getElementById('checkout-total-price').innerText = `$${finalTotal.toFixed(2)}`;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        },
+
+        closeCheckout() {
+            document.getElementById('checkout-modal').classList.add('opacity-0', 'pointer-events-none');
+        },
+
+        processPayment(e) {
+            e.preventDefault();
+            const btn = document.getElementById('pay-submit-btn');
+            btn.innerHTML = `<span>Processing Order...</span>`;
+            btn.disabled = true;
+
+            const name = document.getElementById('checkout-name').value.trim();
+            const email = document.getElementById('checkout-email').value.trim();
+            const hasDropship = this.cart.some(i => i.category === 'dropship');
+
+            let street = "", city = "", country = "", zip = "";
+            if (hasDropship) {
+                street = document.getElementById('checkout-street').value.trim();
+                city = document.getElementById('checkout-city').value.trim();
+                country = document.getElementById('checkout-country').value.trim();
+                zip = document.getElementById('checkout-zip').value.trim();
+            }
+
+            const subtotal = this.cart.reduce((s, i) => s + (i.price * i.quantity), 0);
+            const discount = this.appliedPromoCode ? subtotal * (this.appliedPromoCode.discount / 100) : 0;
+            const shippingFee = hasDropship && subtotal < 50 ? 4.99 : 0;
+            const finalTotal = subtotal - discount + shippingFee;
+
+            setTimeout(() => {
+                btn.innerHTML = `<span>Complete Order & View Tracking</span>`;
+                btn.disabled = false;
+                this.closeCheckout();
+
+                const newOrder = {
+                    id: "ORD-" + Math.floor(1000 + Math.random() * 9000) + "-AJ",
+                    customerName: name,
+                    customerEmail: email,
+                    date: new Date().toISOString().slice(0,10),
+                    total: finalTotal,
+                    status: hasDropship ? "pending" : "delivered",
+                    isDropship: hasDropship,
+                    shippingAddress: hasDropship ? `${street}, ${city}, ${country} ${zip}` : "Digital Delivery",
+                    trackingNumber: hasDropship ? "Processing with Supplier..." : "N/A - Instant License",
+                    items: [...this.cart]
+                };
+
+                ORDERS.unshift(newOrder);
+
+                // Add entries to User Library
+                this.cart.forEach(item => {
+                    const licenseKey = "AJ-" + Math.random().toString(36).substring(2, 8).toUpperCase() + "-2026";
+                    USER_LIBRARY.unshift({
+                        id: Date.now() + Math.random(),
+                        orderId: newOrder.id,
+                        title: item.title,
+                        category: item.category,
+                        typeLabel: item.typeLabel,
+                        icon: item.icon,
+                        imageBg: item.imageBg,
+                        licenseKey: item.category === 'dropship' ? null : licenseKey,
+                        status: newOrder.status,
+                        trackingNumber: newOrder.trackingNumber,
+                        shippingAddress: newOrder.shippingAddress,
+                        purchasedAt: new Date().toLocaleDateString()
+                    });
+                });
+
+                saveStoreToLocalStorage();
+                this.updateLibraryUI();
+                this.renderAdminOverview();
+
+                // Success Modal Content
+                const list = document.getElementById('success-items-list');
+                list.innerHTML = this.cart.map(i => `
+                    <div class="flex items-center justify-between text-xs py-1.5 border-b border-gray-100 last:border-0">
+                        <span class="font-bold text-gray-800">${i.title} (${i.quantity}x)</span>
+                        ${i.category === 'dropship' ? `
+                            <span class="text-amber-700 font-bold">📦 Dropship Processing</span>
+                        ` : `
+                            <button onclick="app.simulatedDownload('${i.title}')" class="text-citrus-600 font-extrabold hover:underline">Download License ⚡</button>
+                        `}
+                    </div>
+                `).join('');
+
+                this.cart = [];
+                this.appliedPromoCode = null;
+                this.updateCartUI();
+
+                document.getElementById('success-modal').classList.remove('opacity-0', 'pointer-events-none');
+            }, 1200);
+        },
+
+        closeSuccessModal() {
+            document.getElementById('success-modal').classList.add('opacity-0', 'pointer-events-none');
+        },
+
+        simulatedDownload(title) {
+            this.showToast(`Downloading license bundle for "${title}"...`, "💾");
+        },
+
+        // USER LIBRARY DRAWER & DROPSHIP SHIPMENT TRACKING
+        toggleLibrary(open) {
+            const backdrop = document.getElementById('library-drawer-backdrop');
+            const drawer = document.getElementById('library-drawer');
+            if (open) {
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                drawer.classList.remove('translate-x-full');
+            } else {
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                drawer.classList.add('translate-x-full');
+            }
+        },
+
+        updateLibraryUI() {
+            const badge = document.getElementById('library-badge');
+            const container = document.getElementById('library-items-container');
+            badge.innerText = USER_LIBRARY.length;
+
+            if (USER_LIBRARY.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12">
+                        <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center text-2xl mx-auto mb-3 text-gray-400">📂</div>
+                        <p class="text-sm font-bold text-gray-700">No purchases found</p>
+                        <p class="text-xs text-gray-400 mt-1">Complete a checkout to track digital licenses or dropship physical shipments.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = USER_LIBRARY.map(item => {
+                const isDropship = item.category === 'dropship';
+                
+                return `
+                <div class="bg-white p-4 rounded-2xl border border-gray-200/80 shadow-sm space-y-2.5">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr ${item.imageBg} text-white flex items-center justify-center text-lg font-bold">
+                            ${item.icon}
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-xs font-bold text-gray-900">${item.title}</h4>
+                                <span class="text-[9px] font-mono text-gray-400">${item.orderId || ''}</span>
+                            </div>
+                            <span class="text-[10px] text-gray-400">${item.typeLabel} • Purchased ${item.purchasedAt}</span>
+                        </div>
+                    </div>
+
+                    ${isDropship ? `
+                        <div class="bg-amber-50/80 p-3 rounded-xl border border-amber-200 space-y-1.5 text-xs">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-amber-900">📦 Dropship Status:</span>
+                                <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full ${
+                                    item.status === 'delivered' ? 'bg-emerald-100 text-emerald-800' : 
+                                    item.status === 'shipped' ? 'bg-blue-100 text-blue-800' : 'bg-amber-100 text-amber-900'
+                                }">
+                                    ${item.status || 'Pending Supplier Fulfillment'}
+                                </span>
+                            </div>
+                            <div class="text-[11px] text-gray-600">
+                                <b>Tracking #:</b> <span class="font-mono text-gray-800">${item.trackingNumber || 'Awaiting Carrier Scan'}</span>
+                            </div>
+                            <div class="text-[10px] text-gray-500 truncate">
+                                <b>Address:</b> ${item.shippingAddress}
+                            </div>
+                        </div>
+                    ` : `
+                        <div class="bg-cream p-2.5 rounded-xl border border-gray-200 flex items-center justify-between text-xs">
+                            <code class="font-mono text-[11px] text-botanical-900 font-bold">${item.licenseKey}</code>
+                            <button onclick="app.simulatedDownload('${item.title}')" class="text-citrus-600 font-bold text-[11px] hover:underline">Download ⚡</button>
+                        </div>
+                    `}
+                </div>
+            `;
+            }).join('');
+        },
+
+        // MULTI-TAB ADMIN COMMAND CENTER ENGINE
+        openAdminStudio() {
+            const modal = document.getElementById('admin-studio-modal');
+            const lockView = document.getElementById('admin-lock-view');
+            const dashView = document.getElementById('admin-dashboard-view');
+
+            if (this.isAdminLoggedIn) {
+                lockView.classList.add('hidden');
+                dashView.classList.remove('hidden');
+                this.switchAdminTab(this.activeAdminTab);
+                this.renderAdminOverview();
+                this.renderAdminCatalogTable();
+                this.renderAdminOrders();
+                this.renderAdminSuppliersAndPromos();
+            } else {
+                lockView.classList.remove('hidden');
+                dashView.classList.add('hidden');
+            }
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        },
+
+        closeAdminStudio() {
+            document.getElementById('admin-studio-modal').classList.add('opacity-0', 'pointer-events-none');
+        },
+
+        verifyAdminPin(e) {
+            e.preventDefault();
+            const inputPin = document.getElementById('admin-pin-input').value.trim();
+            if (inputPin === ADMIN_PIN) {
+                this.isAdminLoggedIn = true;
+                this.updateAdminHeaderUI();
+                this.openAdminStudio();
+                this.renderProducts();
+                this.renderPodcasts();
+                this.showToast("Admin Command Center unlocked!", "⚡");
+            } else {
+                this.showToast("Incorrect Security PIN", "❌");
+            }
+        },
+
+        logoutAdmin() {
+            this.isAdminLoggedIn = false;
+            this.updateAdminHeaderUI();
+            this.renderProducts();
+            this.renderPodcasts();
+            this.closeAdminStudio();
+            this.showToast("Admin logged out.", "🔒");
+        },
+
+        updateAdminHeaderUI() {
+            const btnLabel = document.getElementById('admin-btn-label');
+            const icon = document.getElementById('admin-icon');
+            const statusPill = document.getElementById('admin-status-pill');
+
+            if (this.isAdminLoggedIn) {
+                btnLabel.innerText = "Admin Active";
+                icon.innerText = "⚡";
+                statusPill.classList.remove('hidden');
+            } else {
+                btnLabel.innerText = "Admin Studio";
+                icon.innerText = "🔒";
+                statusPill.classList.add('hidden');
+            }
+        },
+
+        switchAdminTab(tab) {
+            this.activeAdminTab = tab;
+            const tabs = ['overview', 'catalog', 'orders', 'suppliers', 'settings'];
+
+            tabs.forEach(t => {
+                const btn = document.getElementById(`adm-tab-${t}`);
+                const sec = document.getElementById(`adm-sec-${t}`);
+                if (btn && sec) {
+                    if (t === tab) {
+                        btn.className = "flex-1 py-2.5 px-3 rounded-xl text-xs font-extrabold transition-all bg-white text-botanical-950 shadow-sm whitespace-nowrap";
+                        sec.classList.remove('hidden');
+                    } else {
+                        btn.className = "flex-1 py-2.5 px-3 rounded-xl text-xs font-extrabold transition-all text-gray-600 hover:text-gray-900 whitespace-nowrap";
+                        sec.classList.add('hidden');
+                    }
+                }
+            });
+
+            if (tab === 'overview') this.renderAdminOverview();
+            if (tab === 'catalog') this.renderAdminCatalogTable();
+            if (tab === 'orders') this.renderAdminOrders();
+            if (tab === 'suppliers') this.renderAdminSuppliersAndPromos();
+        },
+
+        scrollToAdminForm() {
+            const form = document.getElementById('admin-prod-form');
+            if (form) form.scrollIntoView({ behavior: 'smooth' });
+        },
+
+        // TAB 1: OVERVIEW & ANALYTICS RENDER
+        renderAdminOverview() {
+            const totalGross = ORDERS.reduce((s, o) => s + o.total, 0);
+            
+            // Calculate Net Profit considering wholesale cost for dropship orders
+            let estimatedNetProfit = 0;
+            ORDERS.forEach(order => {
+                order.items.forEach(item => {
+                    const prod = PRODUCTS.find(p => p.title === item.title);
+                    if (prod && prod.wholesaleCost) {
+                        estimatedNetProfit += (item.price - prod.wholesaleCost) * item.quantity;
+                    } else {
+                        estimatedNetProfit += item.price * item.quantity * 0.85; // ~85% margin on digital
+                    }
+                });
+            });
+
+            const totalOrdersCount = ORDERS.length;
+            const catalogItemsCount = PRODUCTS.length;
+            const pendingDropshipCount = ORDERS.filter(o => o.isDropship && (o.status === 'pending' || o.status === 'processing')).length;
+
+            document.getElementById('kpi-gross-revenue').innerText = `$${totalGross.toFixed(2)}`;
+            document.getElementById('kpi-net-profit').innerText = `$${estimatedNetProfit.toFixed(2)}`;
+            document.getElementById('kpi-total-orders').innerText = totalOrdersCount;
+            document.getElementById('kpi-catalog-items').innerText = catalogItemsCount;
+            document.getElementById('kpi-pending-dropship').innerText = pendingDropshipCount;
+
+            const pendingBadge = document.getElementById('adm-pending-orders-badge');
+            if (pendingDropshipCount > 0) {
+                pendingBadge.innerText = pendingDropshipCount;
+                pendingBadge.classList.remove('hidden');
+            } else {
+                pendingBadge.classList.add('hidden');
+            }
+
+            // Render category breakdown bars
+            const categories = ['dropship', 'apps', 'digital', 'courses', 'affiliate'];
+            const container = document.getElementById('category-distribution-bars');
+
+            container.innerHTML = categories.map(cat => {
+                const count = PRODUCTS.filter(p => p.category === cat).length;
+                const percentage = catalogItemsCount > 0 ? Math.round((count / catalogItemsCount) * 100) : 0;
+                const labels = { dropship: '📦 Dropshipping Goods', apps: '⚡ Mac & Web Apps', digital: '🧠 Digital Workspaces', courses: '🎓 Masterclasses', affiliate: '⌨️ Partner Gear' };
+
+                return `
+                    <div class="space-y-1">
+                        <div class="flex justify-between text-xs font-bold text-gray-700">
+                            <span>${labels[cat] || cat}</span>
+                            <span>${count} items (${percentage}%)</span>
+                        </div>
+                        <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="h-full ${cat === 'dropship' ? 'bg-amber-500' : 'bg-botanical-700'}" style="width: ${percentage}%"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        },
+
+        // TAB 2: CATALOG & DROPSHIP MANAGER
+        populateSupplierDropdown() {
+            const dropdown = document.getElementById('adm-p-supplier');
+            if (!dropdown) return;
+            dropdown.innerHTML = SUPPLIERS.map(s => `<option value="${s.name}">${s.name} (${s.leadTime})</option>`).join('');
+        },
+
+        handleFormCategoryChange(val) {
+            const dropshipFields = document.getElementById('adm-dropship-fields');
+            if (val === 'dropship') dropshipFields.classList.remove('hidden');
+            else dropshipFields.classList.add('hidden');
+            this.calcProfitMargin();
+        },
+
+        calcProfitMargin() {
+            const price = parseFloat(document.getElementById('adm-p-price').value) || 0;
+            const wholesale = parseFloat(document.getElementById('adm-p-wholesale').value) || 0;
+            const display = document.getElementById('adm-margin-display');
+
+            if (wholesale > 0 && price > 0) {
+                const profit = price - wholesale;
+                const marginPct = ((profit / price) * 100).toFixed(1);
+                display.innerText = `Profit: $${profit.toFixed(2)} (${marginPct}% Margin)`;
+                display.className = profit >= 0 ? "text-sm font-extrabold text-botanical-900" : "text-sm font-extrabold text-red-600";
+            } else {
+                display.innerText = "Profit: $0.00 (0.0% Margin)";
+            }
+        },
+
+        saveProductForm(e) {
+            e.preventDefault();
+            const editId = document.getElementById('edit-prod-id').value;
+            const category = document.getElementById('adm-p-category').value;
+            const isDropship = category === 'dropship';
+            const price = parseFloat(document.getElementById('adm-p-price').value) || 0;
+            const wholesaleCost = isDropship ? (parseFloat(document.getElementById('adm-p-wholesale').value) || 0) : null;
+
+            const productData = {
+                id: editId ? parseInt(editId) : Date.now(),
+                title: document.getElementById('adm-p-title').value.trim(),
+                category: category,
+                typeLabel: isDropship ? 'Dropship Physical Product' : (category === 'apps' ? 'Mac / Web App' : category === 'courses' ? 'Masterclass Course' : 'Digital Workspace'),
+                price: price,
+                wholesaleCost: wholesaleCost,
+                supplierName: isDropship ? document.getElementById('adm-p-supplier').value : null,
+                shippingEstimate: isDropship ? (document.getElementById('adm-p-shipping').value.trim() || '4-7 Business Days') : null,
+                stockStatus: isDropship ? document.getElementById('adm-p-stock').value : 'In Stock',
+                rating: 5.0,
+                reviewsCount: 1,
+                badge: document.getElementById('adm-p-badge').value.trim() || (isDropship ? 'NEW DROPSHIP' : 'NEW RELEASE'),
+                imageBg: document.getElementById('adm-p-bg').value,
+                icon: document.getElementById('adm-p-icon').value,
+                shortDesc: document.getElementById('adm-p-short').value.trim(),
+                fullDesc: document.getElementById('adm-p-full').value.trim(),
+                specs: isDropship ? ["Ships Worldwide", "Tracked Delivery", "High Quality Vetted"] : ["Instant Access", "Lifetime Updates"],
+                isCustom: true
+            };
+
+            if (editId) {
+                const idx = PRODUCTS.findIndex(p => p.id === parseInt(editId));
+                if (idx !== -1) PRODUCTS[idx] = { ...PRODUCTS[idx], ...productData };
+                this.showToast(`Updated "${productData.title}"`, "✨");
+            } else {
+                PRODUCTS.unshift(productData);
+                this.showToast(`Published "${productData.title}"!`, "✨");
+            }
+
+            saveStoreToLocalStorage();
+            this.renderProducts();
+            this.renderAdminOverview();
+            this.renderAdminCatalogTable();
+            this.cancelEditProduct();
+        },
+
+        renderAdminCatalogTable() {
+            const tbody = document.getElementById('adm-catalog-table-body');
+            tbody.innerHTML = PRODUCTS.map(p => {
+                const isDropship = p.category === 'dropship';
+                const profit = isDropship && p.wholesaleCost ? (p.price - p.wholesaleCost) : null;
+                const marginPct = isDropship && p.wholesaleCost ? (((p.price - p.wholesaleCost) / p.price) * 100).toFixed(0) : null;
+
+                return `
+                    <tr class="hover:bg-cream/60 transition-colors">
+                        <td class="py-3 px-3 flex items-center gap-2">
+                            <span class="text-base">${p.icon}</span>
+                            <div>
+                                <span class="font-bold text-gray-900 block truncate max-w-[180px]">${p.title}</span>
+                                <span class="text-[9px] text-gray-400">ID: #${p.id}</span>
+                            </div>
+                        </td>
+                        <td class="py-3 px-3 uppercase text-[10px] font-bold text-gray-600">${p.category}</td>
+                        <td class="py-3 px-3 font-extrabold text-gray-900">$${p.price.toFixed(2)}</td>
+                        <td class="py-3 px-3 text-xs">
+                            ${isDropship ? `
+                                <div><b>Cost:</b> $${(p.wholesaleCost || 0).toFixed(2)}</div>
+                                <div class="text-emerald-700 font-bold">+$${(profit || 0).toFixed(2)} (${marginPct}%)</div>
+                            ` : `<span class="text-gray-400">Digital (~85%)</span>`}
+                        </td>
+                        <td class="py-3 px-3">
+                            <button onclick="app.toggleStockStatus(${p.id})" class="text-[10px] font-bold px-2 py-0.5 rounded-full ${p.stockStatus === 'Low Stock' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">
+                                ${p.stockStatus || 'In Stock'}
+                            </button>
+                        </td>
+                        <td class="py-3 px-3 text-right">
+                            <button onclick="app.editProduct(${p.id})" class="text-gray-400 hover:text-botanical-900 p-1">✏️</button>
+                            <button onclick="app.deleteProduct(${p.id})" class="text-gray-400 hover:text-red-500 p-1">🗑️</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        },
+
+        toggleStockStatus(id) {
+            const product = PRODUCTS.find(p => p.id === id);
+            if (!product) return;
+            product.stockStatus = product.stockStatus === 'Low Stock' ? 'In Stock' : 'Low Stock';
+            saveStoreToLocalStorage();
+            this.renderProducts();
+            this.renderAdminCatalogTable();
+            this.showToast(`Updated stock status for ${product.title}`, "📦");
+        },
+
+        editProduct(id) {
+            const product = PRODUCTS.find(p => p.id === id);
+            if (!product) return;
+
+            this.openAdminStudio();
+            this.switchAdminTab('catalog');
+
+            document.getElementById('edit-prod-id').value = product.id;
+            document.getElementById('adm-p-title').value = product.title;
+            document.getElementById('adm-p-category').value = product.category;
+            document.getElementById('adm-p-price').value = product.price;
+            document.getElementById('adm-p-badge').value = product.badge || '';
+            document.getElementById('adm-p-icon').value = product.icon || '📦';
+            document.getElementById('adm-p-bg').value = product.imageBg || 'from-amber-600 to-citrus-600';
+            document.getElementById('adm-p-short').value = product.shortDesc;
+            document.getElementById('adm-p-full').value = product.fullDesc || '';
+
+            if (product.category === 'dropship') {
+                document.getElementById('adm-dropship-fields').classList.remove('hidden');
+                document.getElementById('adm-p-wholesale').value = product.wholesaleCost || 0;
+                document.getElementById('adm-p-shipping').value = product.shippingEstimate || '4-7 Business Days';
+                if (product.supplierName) document.getElementById('adm-p-supplier').value = product.supplierName;
+                if (product.stockStatus) document.getElementById('adm-p-stock').value = product.stockStatus;
+                this.calcProfitMargin();
+            } else {
+                document.getElementById('adm-dropship-fields').classList.add('hidden');
+            }
+
+            document.getElementById('prod-form-title').innerText = `Edit Item #${product.id}`;
+            document.getElementById('adm-p-submit-btn').innerText = "Save Product Changes";
+            document.getElementById('cancel-edit-prod-btn').classList.remove('hidden');
+            this.scrollToAdminForm();
+        },
+
+        cancelEditProduct() {
+            document.getElementById('admin-prod-form').reset();
+            document.getElementById('edit-prod-id').value = "";
+            document.getElementById('prod-form-title').innerText = "Publish New Product or Dropship Item";
+            document.getElementById('adm-p-submit-btn').innerText = "Publish Item to Storefront";
+            document.getElementById('cancel-edit-prod-btn').classList.add('hidden');
+            document.getElementById('adm-dropship-fields').classList.add('hidden');
+        },
+
+        deleteProduct(id) {
+            if (confirm("Delete this item from the store catalog?")) {
+                PRODUCTS = PRODUCTS.filter(p => p.id !== id);
+                this.removeFromCart(id);
+                saveStoreToLocalStorage();
+                this.renderProducts();
+                this.renderAdminOverview();
+                this.renderAdminCatalogTable();
+                this.showToast("Product deleted.", "🗑️");
+            }
+        },
+
+        // TAB 3: ORDERS & DROPSHIP FULFILLMENT
+        filterOrders(status) {
+            this.orderFilterStatus = status;
+            this.renderAdminOrders();
+        },
+
+        renderAdminOrders() {
+            const container = document.getElementById('adm-orders-list-container');
+            const filtered = ORDERS.filter(o => {
+                if (this.orderFilterStatus === 'all') return true;
+                if (this.orderFilterStatus === 'pending') return o.status === 'pending' || o.status === 'processing';
+                if (this.orderFilterStatus === 'shipped') return o.status === 'shipped' || o.status === 'delivered';
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="p-8 text-center text-xs text-gray-400 bg-cream rounded-2xl">No orders match filter.</div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(order => `
+                <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm space-y-3">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 pb-3">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-mono font-extrabold text-sm text-botanical-950">${order.id}</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${order.isDropship ? 'bg-amber-100 text-amber-900' : 'bg-botanical-100 text-botanical-900'}">
+                                    ${order.isDropship ? '📦 Dropship Order' : '⚡ Digital Download'}
+                                </span>
+                            </div>
+                            <span class="text-xs text-gray-500">${order.customerName} (${order.customerEmail}) • ${order.date}</span>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <span class="text-base font-extrabold text-botanical-950">$${order.total.toFixed(2)}</span>
+                            <select onchange="app.updateOrderStatus('${order.id}', this.value)" class="bg-cream border border-gray-300 rounded-xl px-2.5 py-1 text-xs font-bold text-gray-800 focus:outline-none">
+                                <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Pending Supplier</option>
+                                <option value="processing" ${order.status === 'processing' ? 'selected' : ''}>Ordered from Supplier</option>
+                                <option value="shipped" ${order.status === 'shipped' ? 'selected' : ''}>Shipped</option>
+                                <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Delivered</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Purchased Items -->
+                    <div class="text-xs space-y-1">
+                        <span class="font-bold text-gray-700 block text-[10px] uppercase">Purchased Items:</span>
+                        ${order.items.map(i => `
+                            <div class="flex justify-between bg-cream p-2 rounded-lg border border-gray-100">
+                                <span>${i.title} (${i.quantity}x)</span>
+                                <span class="font-bold">$${(i.price * i.quantity).toFixed(2)}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    ${order.isDropship ? `
+                        <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs space-y-2">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                <div>
+                                    <b>Shipping Address:</b> <span class="text-gray-700">${order.shippingAddress}</span>
+                                </div>
+                                <button onclick="app.openSupplierForwardModal('${order.id}')" class="bg-amber-600 hover:bg-amber-500 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition-all shadow-sm flex items-center gap-1">
+                                    <span>✉️ Forward to Supplier</span>
+                                </button>
+                            </div>
+
+                            <div class="flex items-center gap-2 pt-1">
+                                <label class="text-[10px] font-bold text-gray-700 uppercase">Carrier Tracking #:</label>
+                                <input type="text" id="track-input-${order.id}" value="${order.trackingNumber === 'Processing with Supplier...' ? '' : order.trackingNumber}" placeholder="e.g. TRK-9821-USPS" class="bg-white border border-amber-300 rounded-lg px-2 py-1 text-xs font-mono flex-1" />
+                                <button onclick="app.saveTrackingNumber('${order.id}')" class="bg-botanical-900 hover:bg-botanical-800 text-white font-bold px-3 py-1 rounded-lg text-xs">
+                                    Save Tracking
+                                </button>
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('');
+        },
+
+        updateOrderStatus(orderId, newStatus) {
+            const order = ORDERS.find(o => o.id === orderId);
+            if (!order) return;
+            order.status = newStatus;
+
+            // Update user library status as well
+            USER_LIBRARY.forEach(lib => {
+                if (lib.orderId === orderId) lib.status = newStatus;
+            });
+
+            saveStoreToLocalStorage();
+            this.renderAdminOverview();
+            this.renderAdminOrders();
+            this.updateLibraryUI();
+            this.showToast(`Order ${orderId} status set to ${newStatus}`, "🚚");
+        },
+
+        saveTrackingNumber(orderId) {
+            const input = document.getElementById(`track-input-${orderId}`);
+            if (!input) return;
+            const tracking = input.value.trim();
+            const order = ORDERS.find(o => o.id === orderId);
+            if (!order) return;
+
+            order.trackingNumber = tracking || "Processing with Supplier...";
+            order.status = "shipped";
+
+            USER_LIBRARY.forEach(lib => {
+                if (lib.orderId === orderId) {
+                    lib.trackingNumber = tracking;
+                    lib.status = "shipped";
+                }
+            });
+
+            saveStoreToLocalStorage();
+            this.renderAdminOrders();
+            this.updateLibraryUI();
+            this.showToast(`Tracking saved for ${orderId}! Status set to Shipped.`, "📦");
+        },
+
+        openSupplierForwardModal(orderId) {
+            const order = ORDERS.find(o => o.id === orderId);
+            if (!order) return;
+
+            const modal = document.getElementById('supplier-forward-modal');
+            const content = document.getElementById('supplier-forward-content');
+
+            content.innerHTML = `
+                <div class="bg-cream p-3 rounded-xl border border-gray-200 text-xs space-y-1">
+                    <div><b>Order ID:</b> ${order.id}</div>
+                    <div><b>Customer Name:</b> ${order.customerName}</div>
+                    <div><b>Shipping Address:</b> ${order.shippingAddress}</div>
+                </div>
+
+                <div class="text-xs space-y-1">
+                    <span class="font-bold text-gray-700 uppercase text-[10px]">Items to Fulfill:</span>
+                    ${order.items.map(i => `
+                        <div class="bg-white p-2 rounded-lg border border-gray-200 flex justify-between">
+                            <span>${i.title} (Qty: ${i.quantity})</span>
+                            <span class="font-bold text-amber-800">${i.supplierName || 'Default Supplier'}</span>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-700 uppercase mb-1">Generated Dispatch Manifest Email Body</label>
+                    <textarea readonly rows="5" class="w-full bg-cream border border-gray-300 rounded-xl p-3 text-xs font-mono text-gray-800">Hello Supplier Team,
+
+Please fulfill and ship the following dropshipping order:
+- Order Ref: ${order.id}
+- Recipient: ${order.customerName}
+- Shipping Address: ${order.shippingAddress}
+
+Items:
+${order.items.map(i => `- ${i.title} (Qty: ${i.quantity})`).join('\n')}
+
+Please reply with the tracking number once dispatched.
+
+Best regards,
+Abena-Jiyu Operations Studio</textarea>
+                </div>
+
+                <button onclick="navigator.clipboard.writeText(document.querySelector('#supplier-forward-modal textarea').value); app.showToast('Manifest copied to clipboard!', '📋'); app.closeSupplierModal();" class="w-full bg-botanical-900 hover:bg-botanical-800 text-white font-bold py-3 rounded-2xl text-xs transition-all">
+                    📋 Copy Manifest & Close
+                </button>
+            `;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        },
+
+        closeSupplierModal() {
+            document.getElementById('supplier-forward-modal').classList.add('opacity-0', 'pointer-events-none');
+        },
+
+        // TAB 4: SUPPLIERS & PROMO CODES
+        renderAdminSuppliersAndPromos() {
+            // Render Suppliers
+            const supContainer = document.getElementById('supplier-list-container');
+            const supBadge = document.getElementById('supplier-count-badge');
+            supBadge.innerText = `${SUPPLIERS.length} Active`;
+
+            supContainer.innerHTML = SUPPLIERS.map(s => `
+                <div class="bg-white p-3 rounded-xl border border-gray-200 flex items-center justify-between text-xs">
+                    <div>
+                        <h5 class="font-bold text-gray-900">${s.name}</h5>
+                        <span class="text-[10px] text-gray-500">${s.email} • Lead: ${s.leadTime} (${s.region})</span>
+                    </div>
+                    <button onclick="app.deleteSupplier(${s.id})" class="text-gray-400 hover:text-red-500 p-1">🗑️</button>
+                </div>
+            `).join('');
+
+            // Render Promos
+            const promoContainer = document.getElementById('promo-list-container');
+            const promoBadge = document.getElementById('promo-count-badge');
+            promoBadge.innerText = `${PROMO_CODES.length} Codes`;
+
+            promoContainer.innerHTML = PROMO_CODES.map((p, idx) => `
+                <div class="bg-white p-3 rounded-xl border border-gray-200 flex items-center justify-between text-xs">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-citrus-600 uppercase font-mono">${p.code}</span>
+                            <span class="bg-citrus-100 text-citrus-800 text-[9px] font-bold px-2 py-0.2 rounded-full">${p.discount}% OFF</span>
+                        </div>
+                        <span class="text-[10px] text-gray-400">Used ${p.usageCount} times</span>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <button onclick="app.togglePromoActive(${idx})" class="text-[10px] font-bold px-2 py-0.5 rounded-full ${p.active ? 'bg-emerald-100 text-emerald-800' : 'bg-gray-100 text-gray-600'}">
+                            ${p.active ? 'Active' : 'Disabled'}
+                        </button>
+                        <button onclick="app.deletePromoCode(${idx})" class="text-gray-400 hover:text-red-500 p-1">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+
+            this.populateSupplierDropdown();
+        },
+
+        saveSupplier(e) {
+            e.preventDefault();
+            const name = document.getElementById('sup-name').value.trim();
+            const email = document.getElementById('sup-email').value.trim();
+            const leadTime = document.getElementById('sup-lead').value.trim() || '3-5 Days';
+            const region = document.getElementById('sup-region').value.trim() || 'Global';
+
+            SUPPLIERS.push({ id: Date.now(), name, email, leadTime, region });
+            saveStoreToLocalStorage();
+            this.renderAdminSuppliersAndPromos();
+            e.target.reset();
+            this.showToast(`Supplier "${name}" added!`, "🤝");
+        },
+
+        deleteSupplier(id) {
+            SUPPLIERS = SUPPLIERS.filter(s => s.id !== id);
+            saveStoreToLocalStorage();
+            this.renderAdminSuppliersAndPromos();
+            this.showToast("Supplier removed.", "🗑️");
+        },
+
+        savePromoCode(e) {
+            e.preventDefault();
+            const code = document.getElementById('pcode-name').value.trim().toUpperCase();
+            const discount = parseInt(document.getElementById('pcode-discount').value) || 10;
+
+            PROMO_CODES.unshift({ code, discount, active: true, usageCount: 0 });
+            saveStoreToLocalStorage();
+            this.renderAdminSuppliersAndPromos();
+            e.target.reset();
+            this.showToast(`Promo Code '${code}' (${discount}%) created!`, "🏷️");
+        },
+
+        togglePromoActive(idx) {
+            PROMO_CODES[idx].active = !PROMO_CODES[idx].active;
+            saveStoreToLocalStorage();
+            this.renderAdminSuppliersAndPromos();
+        },
+
+        deletePromoCode(idx) {
+            PROMO_CODES.splice(idx, 1);
+            saveStoreToLocalStorage();
+            this.renderAdminSuppliersAndPromos();
+            this.showToast("Promo code deleted.", "🗑️");
+        },
+
+        // TAB 5: SETTINGS & DATA BACKUP
+        exportCatalogJSON() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ 
+                products: PRODUCTS, 
+                podcasts: PODCASTS,
+                suppliers: SUPPLIERS,
+                promos: PROMO_CODES,
+                orders: ORDERS
+            }, null, 2));
+            
+            const dlAnchor = document.createElement('a');
+            dlAnchor.setAttribute("href", dataStr);
+            dlAnchor.setAttribute("download", `abena_jiyu_full_store_backup_${new Date().toISOString().slice(0,10)}.json`);
+            document.body.appendChild(dlAnchor);
+            dlAnchor.click();
+            dlAnchor.remove();
+            this.showToast("Full Store JSON Backup exported!", "📥");
+        },
+
+        importCatalogJSON(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                try {
+                    const parsed = JSON.parse(event.target.result);
+                    if (parsed.products && Array.isArray(parsed.products)) PRODUCTS = parsed.products;
+                    if (parsed.podcasts && Array.isArray(parsed.podcasts)) PODCASTS = parsed.podcasts;
+                    if (parsed.suppliers && Array.isArray(parsed.suppliers)) SUPPLIERS = parsed.suppliers;
+                    if (parsed.promos && Array.isArray(parsed.promos)) PROMO_CODES = parsed.promos;
+                    if (parsed.orders && Array.isArray(parsed.orders)) ORDERS = parsed.orders;
+
+                    saveStoreToLocalStorage();
+                    this.renderProducts();
+                    this.renderPodcasts();
+                    this.renderAdminOverview();
+                    this.renderAdminCatalogTable();
+                    this.renderAdminOrders();
+                    this.renderAdminSuppliersAndPromos();
+                    this.showToast("Store restored from JSON backup!", "🎉");
+                } catch (err) {
+                    this.showToast("Invalid JSON Backup file format", "❌");
+                }
+            };
+            reader.readAsText(file);
+        },
+
+        updateAdminPin(e) {
+            e.preventDefault();
+            const newPin = document.getElementById('new-admin-pin').value.trim();
+            if (newPin.length >= 4) {
+                ADMIN_PIN = newPin;
+                saveStoreToLocalStorage();
+                this.showToast("Security PIN updated successfully!", "🔑");
+                e.target.reset();
+            } else {
+                this.showToast("PIN must be at least 4 characters", "⚠️");
+            }
+        },
+
+        resetToDefaultCatalog() {
+            if (confirm("Factory reset store catalog, suppliers, and orders back to initial defaults?")) {
+                PRODUCTS = [...INITIAL_PRODUCTS];
+                PODCASTS = [...INITIAL_PODCASTS];
+                SUPPLIERS = [...INITIAL_SUPPLIERS];
+                PROMO_CODES = [...INITIAL_PROMOS];
+                ORDERS = [...INITIAL_ORDERS];
+                saveStoreToLocalStorage();
+                this.renderProducts();
+                this.renderPodcasts();
+                this.renderAdminOverview();
+                this.renderAdminCatalogTable();
+                this.renderAdminOrders();
+                this.renderAdminSuppliersAndPromos();
+                this.showToast("Store reset to factory default state.", "🔄");
+            }
+        },
+
+        // AUDIO PLAYER CONTROLLER
+        playPodcast(id) {
+            const pod = PODCASTS.find(p => p.id === id);
+            if (!pod) return;
+
+            this.currentPodcast = pod;
+            this.audioDuration = pod.durationSeconds;
+            this.audioCurrentTime = 0;
+            this.isPlayingAudio = true;
+
+            document.getElementById('audio-player-bar').classList.remove('translate-y-full');
+            document.getElementById('player-title').innerText = pod.title;
+            document.getElementById('player-author').innerText = pod.author;
+            document.getElementById('player-duration').innerText = pod.duration;
+            document.getElementById('player-thumb').innerText = pod.icon;
+
+            this.synthEngine.startTone(this.volume);
+            this.updatePlayerUI();
+            this.startAudioTimer();
+            this.showToast(`Now playing: ${pod.title}`, "🎧");
+        },
+
+        togglePlayPause() {
+            if (!this.currentPodcast) return;
+            this.isPlayingAudio = !this.isPlayingAudio;
+            if (this.isPlayingAudio) {
+                this.synthEngine.startTone(this.volume);
+                this.startAudioTimer();
+            } else {
+                this.synthEngine.stopTone();
+                this.stopAudioTimer();
+            }
+            this.updatePlayerUI();
+        },
+
+        startAudioTimer() {
+            this.stopAudioTimer();
+            this.audioInterval = setInterval(() => {
+                if (this.isPlayingAudio) {
+                    this.audioCurrentTime += 1 * this.playbackSpeed;
+                    if (this.audioCurrentTime >= this.audioDuration) {
+                        this.audioCurrentTime = this.audioDuration;
+                        this.isPlayingAudio = false;
+                        this.synthEngine.stopTone();
+                        this.stopAudioTimer();
+                    }
+                    this.updatePlayerUI();
+                }
+            }, 1000);
+        },
+
+        stopAudioTimer() {
+            if (this.audioInterval) clearInterval(this.audioInterval);
+        },
+
+        seekAudio(seconds) {
+            if (!this.currentPodcast) return;
+            this.audioCurrentTime = Math.max(0, Math.min(this.audioDuration, this.audioCurrentTime + seconds));
+            this.updatePlayerUI();
+        },
+
+        handleScrub(percent) {
+            if (!this.currentPodcast) return;
+            this.audioCurrentTime = (percent / 100) * this.audioDuration;
+            this.updatePlayerUI();
+        },
+
+        cyclePlaybackSpeed() {
+            const speeds = [1.0, 1.25, 1.5, 2.0];
+            const idx = speeds.indexOf(this.playbackSpeed);
+            this.playbackSpeed = speeds[(idx + 1) % speeds.length];
+            document.getElementById('speed-btn').innerText = `${this.playbackSpeed.toFixed(1)}x`;
+            this.showToast(`Speed set to ${this.playbackSpeed}x`, "⚡");
+        },
+
+        setVolume(val) {
+            this.volume = parseFloat(val);
+            this.synthEngine.setVolume(this.volume);
+        },
+
+        closeAudioPlayer() {
+            this.isPlayingAudio = false;
+            this.synthEngine.stopTone();
+            this.stopAudioTimer();
+            document.getElementById('audio-player-bar').classList.add('translate-y-full');
+        },
+
+        updatePlayerUI() {
+            const playIcon = document.getElementById('play-icon');
+            const pauseIcon = document.getElementById('pause-icon');
+            const currentTimeEl = document.getElementById('player-current-time');
+            const progressInput = document.getElementById('player-progress');
+
+            if (this.isPlayingAudio) {
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+            } else {
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+            }
+
+            const mins = Math.floor(this.audioCurrentTime / 60);
+            const secs = Math.floor(this.audioCurrentTime % 60);
+            currentTimeEl.innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            progressInput.value = (this.audioCurrentTime / this.audioDuration) * 100 || 0;
+        },
+
+        // LEGAL & TERMS POLICY MODALS
+        openPolicyModal(type) {
+            const content = document.getElementById('policy-modal-content');
+            if (type === 'terms') {
+                content.innerHTML = `
+                    <h3 class="text-xl font-extrabold text-botanical-950 mb-2">Terms of Service</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                        All digital products purchased on Abena-Jiyu include lifetime personal licenses. Physical dropshipping products are covered by our 30-day quality guarantee.
+                    </p>
+                    <button onclick="app.closePolicyModal()" class="w-full bg-botanical-900 text-white font-bold py-3 rounded-2xl text-xs">Acknowledge</button>
+                `;
+            } else if (type === 'privacy') {
+                content.innerHTML = `
+                    <h3 class="text-xl font-extrabold text-botanical-950 mb-2">Privacy Policy</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                        Customer shipping addresses for physical dropship products are securely transmitted directly to supplier fulfillment dispatch teams. Zero data is sold to third parties.
+                    </p>
+                    <button onclick="app.closePolicyModal()" class="w-full bg-botanical-900 text-white font-bold py-3 rounded-2xl text-xs">Close</button>
+                `;
+            } else {
+                content.innerHTML = `
+                    <h3 class="text-xl font-extrabold text-botanical-950 mb-2">Shipping & Dropshipping Policy</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                        Dropship orders are dispatched directly from vetted manufacturer warehouses within 24-48 hours. Typical global transit lead times range between 4 to 9 business days with live end-to-end tracking.
+                    </p>
+                    <button onclick="app.closePolicyModal()" class="w-full bg-amber-600 text-white font-bold py-3 rounded-2xl text-xs">Understood</button>
+                `;
+            }
+
+            document.getElementById('policy-modal').classList.remove('opacity-0', 'pointer-events-none');
+        },
+
+        closePolicyModal() {
+            document.getElementById('policy-modal').classList.add('opacity-0', 'pointer-events-none');
+        },
+
+        openAffiliateModal(id) {
+            const product = PRODUCTS.find(p => p.id === id);
+            if (!product) return;
+            this.openPolicyModal('affiliate');
+        },
+
+        handleSubscribe(e) {
+            e.preventDefault();
+            this.showToast("Subscribed! Promo code 'ABENA10' is active for 10% off.", "📬");
+            e.target.reset();
+        }
+    };
+
+    // Initialize application on page load
+    window.addEventListener('DOMContentLoaded', () => {
+        app.init();
+    });
+    </script>
+</body>
+</html>
